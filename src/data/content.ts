@@ -75,7 +75,7 @@ export const archetypes: Archetype[] = [
     name: 'The Innocent',
     tagline: 'Hope · Optimism · Trust',
     description:
-      'Mencari keamanan emosional dan dunia yang lebih sederhana. Termotivasi oleh harapan dan kepercayaan pada kebaikan.',
+      'Masih percaya bahwa kerja keras pasti terbayar dan orang-orang pada dasarnya baik. Bukan naif — tapi memilih untuk tidak kehilangan harapan meski dunia mulai membuktikan sebaliknya.',
     motif: '◷',
   },
   {
@@ -83,7 +83,7 @@ export const archetypes: Archetype[] = [
     name: 'The Orphan',
     tagline: 'Realism · Empathy · Survival',
     description:
-      'Memahami dunia melalui pengalaman langsung. Membangun solidaritas dari realisme yang membumi.',
+      'Sudah cukup kena realita untuk tahu bahwa dunia tidak selalu adil. Dari situ tumbuh empati yang dalam dan kemampuan bertahan yang tidak bisa diajarkan di kelas.',
     motif: '◐',
   },
   {
@@ -91,7 +91,7 @@ export const archetypes: Archetype[] = [
     name: 'The Warrior',
     tagline: 'Discipline · Courage · Drive',
     description:
-      'Bertarung untuk apa yang penting. Disiplin, fokus, dan tidak mudah menyerah saat menghadapi tantangan.',
+      'Tipe yang masih buka buku jam 11 malam bukan karena disuruh, tapi karena ada target yang harus dicapai. Disiplin bukan beban — itu cara kamu membuktikan sesuatu ke diri sendiri.',
     motif: '◣',
   },
   {
@@ -99,7 +99,7 @@ export const archetypes: Archetype[] = [
     name: 'The Caregiver',
     tagline: 'Compassion · Service · Care',
     description:
-      'Menemukan makna dengan merawat orang lain. Sumber stabilitas bagi komunitas di sekitarnya.',
+      'Teman yang selalu ada saat orang lain butuh didengar. Kamu menemukan makna bukan dari pencapaian pribadi, tapi dari melihat orang-orang di sekitarmu tumbuh karena kamu ada.',
     motif: '○',
   },
   {
@@ -107,7 +107,7 @@ export const archetypes: Archetype[] = [
     name: 'The Seeker',
     tagline: 'Autonomy · Curiosity · Quest',
     description:
-      'Tidak betah di zona nyaman. Mencari kebenaran dan jati diri lewat perjalanan, bukan jalur yang sudah dipetakan.',
+      'Tidak bisa duduk diam dengan jawaban yang sudah ada. Selalu ada pertanyaan berikutnya, jalur lain yang belum dijelajahi, identitas yang belum selesai dibentuk.',
     motif: '◇',
   },
   {
@@ -115,7 +115,7 @@ export const archetypes: Archetype[] = [
     name: 'The Lover',
     tagline: 'Connection · Passion · Beauty',
     description:
-      'Menempatkan hubungan, estetika, dan pengalaman sensoris sebagai bahasa utama untuk memahami hidup.',
+      'Merasakan segalanya lebih dalam dari orang lain — musik, hubungan, momen. Buat kamu, hidup yang bermakna bukan soal pencapaian, tapi soal intensitas koneksi yang kamu rasakan.',
     motif: '❀',
   },
   {
@@ -123,7 +123,7 @@ export const archetypes: Archetype[] = [
     name: 'The Destroyer',
     tagline: 'Release · Catharsis · Renewal',
     description:
-      'Membongkar yang tidak lagi melayani. Hadir di titik balik untuk membuat ruang bagi sesuatu yang baru.',
+      'Tidak takut mempertanyakan sistem yang sudah ada — termasuk ekspektasi orang tua, jalur karier "aman", atau versi dirimu yang sudah tidak relevan. Kehancuran yang kamu bawa selalu membuka ruang untuk sesuatu yang lebih jujur.',
     motif: '✕',
   },
   {
@@ -131,7 +131,7 @@ export const archetypes: Archetype[] = [
     name: 'The Creator',
     tagline: 'Vision · Craft · Originality',
     description:
-      'Mewujudkan ide menjadi bentuk. Disiplin estetik dan dorongan untuk meninggalkan jejak yang otentik.',
+      'Ada sesuatu di dalam kepala yang harus diwujudkan — entah itu tulisan, desain, kode, atau musik. Kamu tidak puas hanya mengonsumsi; kamu perlu meninggalkan sesuatu yang benar-benar milikmu.',
     motif: '◎',
   },
   {
@@ -139,7 +139,7 @@ export const archetypes: Archetype[] = [
     name: 'The Magician',
     tagline: 'Insight · Transformation · Catalyst',
     description:
-      'Mengubah situasi melalui pemahaman pola. Mempertemukan ide-ide yang tampak terpisah menjadi sintesis baru.',
+      'Kamu melihat pola di tempat orang lain hanya melihat kekacauan. Satu percakapan denganmu bisa mengubah cara seseorang melihat sesuatu — bukan karena kamu menggurui, tapi karena kamu menghubungkan titik-titik yang tidak terlihat orang lain.',
     motif: '✦',
   },
   {
@@ -147,7 +147,7 @@ export const archetypes: Archetype[] = [
     name: 'The Ruler',
     tagline: 'Order · Responsibility · Legacy',
     description:
-      'Mengambil tanggung jawab untuk membangun struktur dan stabilitas. Berpikir dalam horizon jangka panjang.',
+      'Secara alami kamu yang pegang kendali — bukan karena ingin berkuasa, tapi karena tidak tahan melihat sesuatu berjalan tanpa arah. Kamu sudah memikirkan dampak jangka panjang saat orang lain masih fokus hari ini.',
     motif: '◰',
   },
   {
@@ -155,7 +155,7 @@ export const archetypes: Archetype[] = [
     name: 'The Sage',
     tagline: 'Truth · Analysis · Wisdom',
     description:
-      'Mendekati dunia melalui pertanyaan tajam dan refleksi panjang. Otoritasnya adalah kejernihan berpikir.',
+      'Tidak bisa menerima sesuatu begitu saja — harus dipahami sampai ke akarnya. Kamu lebih percaya pada data dan argumen yang solid daripada opini mayoritas, dan itu yang membuat analisismu tajam.',
     motif: '◉',
   },
   {
@@ -163,7 +163,7 @@ export const archetypes: Archetype[] = [
     name: 'The Fool',
     tagline: 'Play · Presence · Joy',
     description:
-      'Mengingatkan bahwa hidup butuh ringan. Membuka ruang main, ironi, dan kehadiran penuh di momen sekarang.',
+      'Di tengah semua tekanan akademik dan ekspektasi, kamu yang mengingatkan bahwa tidak semua hal harus serius. Kamu hadir penuh di momen sekarang — dan itu justru yang membuat orang tertarik padamu.',
     motif: '◍',
   },
 ]
