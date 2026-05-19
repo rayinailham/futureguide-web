@@ -323,8 +323,9 @@
 .h-track-inner {
   display: flex;
   flex-shrink: 0;
+  height: 100%;
   gap: 1.25rem;
-  align-items: center;
+  align-items: stretch;
   padding-left: max(2rem, calc((100vw - 1280px) / 2 + 2rem));
   padding-right: max(2rem, calc((100vw - 1280px) / 2 + 2rem));
   will-change: transform;

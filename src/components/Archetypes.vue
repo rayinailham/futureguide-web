@@ -114,7 +114,7 @@ onUnmounted(() => ctx?.revert())
             v-for="arc in archetypes"
             :key="arc.id"
             data-arc-card
-            class="bezel relative flex w-[78vw] shrink-0 flex-col sm:w-[480px]"
+            class="bezel relative flex w-[78vw] shrink-0 flex-col sm:w-[480px] h-full"
           >
             <div
               class="bezel-inner flex flex-col justify-between gap-7 p-8 md:gap-8 md:p-10"
