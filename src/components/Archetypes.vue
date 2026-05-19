@@ -159,7 +159,7 @@ onUnmounted(() => ctx?.revert())
         </div>
 
         <!-- Horizontal scroll track -->
-        <div ref="track" class="h-track min-h-0 flex-1 py-10">
+        <div ref="track" class="h-track min-h-0 flex-1 py-16">
           <div ref="inner" class="h-track-inner">
             <article
               v-for="arc in archetypes"
