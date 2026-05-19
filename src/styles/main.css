@@ -73,26 +73,31 @@
     overflow: hidden;
   }
 
-  /* Custom native scrollbar (when not in Lenis-controlled regions) */
+  /* Custom native scrollbar */
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-ink-300) transparent;
+    scrollbar-color: var(--color-ink-600) var(--color-paper-alt);
   }
 
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--color-paper-alt);
+    border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-ink-300);
+    background-color: var(--color-ink-600);
     border-radius: 999px;
-    border: 2px solid var(--color-paper);
+    border: 2px solid var(--color-paper-alt);
+    transition: background-color 300ms var(--ease-fluid);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-ink-500);
+    background-color: var(--color-blue-500);
+  }
+  ::-webkit-scrollbar-corner {
+    background: var(--color-paper-alt);
   }
 }
 
