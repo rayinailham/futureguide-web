@@ -83,15 +83,12 @@ onUnmounted(() => ctx?.revert())
           <div data-card-fade class="bezel">
             <div class="bezel-inner p-6">
               <div class="flex items-center gap-4">
-                <div
-                  class="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl"
-                  style="background: linear-gradient(135deg, var(--color-blue-500), var(--color-blue-700));"
-                >
-                  <span class="text-lg font-medium text-white tracking-tight">DR</span>
-                  <span
-                    class="absolute inset-0"
-                    style="background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 60%);"
-                  ></span>
+                <div class="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl">
+                  <img
+                    src="/prof-dede.jpg"
+                    alt="Prof. Dede Rahmat Hidayat"
+                    class="h-full w-full object-cover object-top"
+                  />
                 </div>
                 <div class="flex flex-col">
                   <span class="text-base font-medium tracking-tight text-[var(--color-ink-900)]">

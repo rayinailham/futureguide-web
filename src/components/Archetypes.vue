@@ -84,7 +84,7 @@ onUnmounted(() => ctx?.revert())
                 class="display max-w-[22ch] text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.15] text-[var(--color-ink-900)]"
               >
                 Mesin klasifikasi yang tidak mengada-ngada. Ia memilih dari
-                <span class="serif-italic text-[var(--color-blue-600)]">dua belas archetype</span> yang sudah terstandar.
+                <span class="serif-italic text-[var(--color-blue-600)]">12 archetype</span> yang sudah terstandar.
               </h2>
             </div>
             <div class="flex flex-col items-start gap-2 md:items-end">
