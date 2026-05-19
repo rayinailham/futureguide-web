@@ -73,32 +73,33 @@
     overflow: hidden;
   }
 
-  /* Custom native scrollbar */
-  html {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-ink-600) var(--color-paper-alt);
-  }
 
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-paper-alt);
-    border-radius: 999px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--color-ink-600);
-    border-radius: 999px;
-    border: 2px solid var(--color-paper-alt);
-    transition: background-color 300ms var(--ease-fluid);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-blue-500);
-  }
-  ::-webkit-scrollbar-corner {
-    background: var(--color-paper-alt);
-  }
+}
+
+/* Custom native scrollbar — unlayered so it wins over @layer base */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-600) var(--color-paper-alt);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-alt);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-ink-600);
+  border-radius: 999px;
+  border: 2px solid var(--color-paper-alt);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-blue-500);
+}
+::-webkit-scrollbar-corner {
+  background: var(--color-paper-alt);
 }
 
 @layer components {
@@ -185,7 +186,13 @@
     opacity: 0.6;
   }
 
-  /* Double-bezel surface (outer shell + inner core) */
+  /* Double-bezel surface (outer shell + inner core)
+   * Outer is content-sized by default. When the parent flex row uses
+   * `align-items: stretch` to enforce uniform card height (matching the
+   * tallest card), the outer gets stretched and `.bezel-inner` grows
+   * via `flex: 1` to fill the padded shell — no overhang, no clipping.
+   * Requires the outer to be a flex column (the card uses `flex flex-col`).
+   */
   .bezel {
     background: color-mix(in oklab, var(--color-ink-900) 4%, transparent);
     border: 1px solid color-mix(in oklab, var(--color-ink-900) 8%, transparent);
@@ -197,6 +204,7 @@
     border-radius: calc(2rem - 6px);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7),
       inset 0 0 0 1px color-mix(in oklab, var(--color-ink-900) 5%, transparent);
+    flex: 1 1 auto;
   }
 
   /* Pill / badge */
@@ -328,7 +336,6 @@
 .h-track-inner {
   display: flex;
   flex-shrink: 0;
-  height: 100%;
   gap: 1.25rem;
   align-items: stretch;
   padding-left: max(2rem, calc((100vw - 1280px) / 2 + 2rem));
