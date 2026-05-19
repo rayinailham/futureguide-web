@@ -1,0 +1,183 @@
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
+import { gsap } from 'gsap'
+import { archetypes } from '../data/content'
+
+const root = ref<HTMLElement | null>(null)
+const track = ref<HTMLElement | null>(null)
+const inner = ref<HTMLElement | null>(null)
+const progress = ref(0)
+let ctx: gsap.Context | null = null
+
+onMounted(() => {
+  if (!root.value || !track.value || !inner.value) return
+
+  ctx = gsap.context(() => {
+    const trackEl = track.value!
+    const innerEl = inner.value!
+
+    // Compute scroll distance based on overflow width
+    const computeDistance = () =>
+      innerEl.scrollWidth - trackEl.clientWidth
+
+    // Pinned horizontal scroll
+    const tween = gsap.to(innerEl, {
+      x: () => -computeDistance(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: root.value,
+        start: 'top top',
+        end: () => `+=${computeDistance() + window.innerHeight * 0.6}`,
+        scrub: 0.6,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          progress.value = self.progress
+        },
+      },
+    })
+
+    // Reveal entry for each card
+    gsap.fromTo(
+      '[data-arc-card]',
+      { y: 24, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.04,
+        ease: 'expo.out',
+        scrollTrigger: {
+          trigger: root.value,
+          start: 'top 80%',
+        },
+      },
+    )
+
+    const onResize = () => {
+      tween.scrollTrigger?.refresh()
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, root.value)
+})
+
+onUnmounted(() => ctx?.revert())
+</script>
+
+<template>
+  <section
+    ref="root"
+    id="archetypes"
+    class="relative bg-[var(--color-paper)]"
+    style="min-height: 100dvh"
+  >
+    <div class="flex h-[100dvh] min-h-[800px] flex-col">
+      <!-- Section header (sticky inside pin) -->
+      <div class="shrink-0 px-6 pb-5 pt-20 md:pb-6 md:pt-24">
+        <div class="mx-auto max-w-[1320px]">
+          <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <span class="pill mb-5 inline-flex">12 Archetype PMAI · Taksonomi Tertutup</span>
+              <h2
+                class="display max-w-[22ch] text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.15] text-[var(--color-ink-900)]"
+              >
+                Mesin klasifikasi yang tidak mengada-ngada. Ia memilih dari
+                <span class="serif-italic text-[var(--color-blue-600)]">dua belas archetype</span> yang sudah terstandar.
+              </h2>
+            </div>
+            <div class="flex flex-col items-start gap-2 md:items-end">
+              <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                Pearson — Marr Archetype Indicator
+              </span>
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-xs text-[var(--color-ink-700)]">
+                  {{ String(Math.min(12, Math.floor(progress * 11) + 1)).padStart(2, '0') }} / 12
+                </span>
+                <div class="relative h-px w-32 bg-[var(--color-ink-200)]">
+                  <span
+                    class="absolute left-0 top-0 h-px bg-[var(--color-blue-500)]"
+                    :style="`width: ${progress * 100}%`"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal scroll track -->
+      <div ref="track" class="h-track min-h-0 flex-1 py-8 md:py-10">
+        <div ref="inner" class="h-track-inner">
+          <article
+            v-for="arc in archetypes"
+            :key="arc.id"
+            data-arc-card
+            class="bezel relative flex w-[78vw] shrink-0 flex-col sm:w-[480px]"
+          >
+            <div
+              class="bezel-inner flex flex-col justify-between gap-7 p-8 md:gap-8 md:p-10"
+            >
+              <!-- Top: index + motif -->
+              <div class="flex items-start justify-between">
+                <div class="flex items-center gap-3">
+                  <span
+                    class="flex h-7 items-center justify-center rounded-full border hairline px-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-600)]"
+                  >
+                    {{ String(arc.id).padStart(2, '0') }}
+                  </span>
+                  <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                    Archetype
+                  </span>
+                </div>
+                <span class="text-4xl text-[var(--color-blue-500)]">{{ arc.motif }}</span>
+              </div>
+
+              <!-- Name + tagline -->
+              <div class="flex flex-col gap-2.5">
+                <h3 class="display text-4xl text-[var(--color-ink-900)] md:text-5xl">
+                  {{ arc.name }}
+                </h3>
+                <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">
+                  {{ arc.tagline }}
+                </span>
+              </div>
+
+              <!-- Description + footer -->
+              <div class="flex flex-col gap-5">
+                <p class="text-sm leading-relaxed text-[var(--color-ink-600)] md:text-base">
+                  {{ arc.description }}
+                </p>
+                <div class="flex items-center justify-between border-t hairline pt-4">
+                  <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                    PMAI · {{ arc.id }} of 12
+                  </span>
+                  <span
+                    class="flex h-7 w-7 items-center justify-center rounded-full border hairline text-[var(--color-ink-700)]"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                      <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Hint -->
+      <div class="shrink-0 px-6 pb-8 pt-6 md:pb-10 md:pt-8">
+        <div
+          class="mx-auto flex max-w-[1320px] items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]"
+        >
+          <span>Scroll untuk menggeser →</span>
+          <span class="hidden md:inline">
+            12 archetype · pencocokan berbasis pola, bukan opini
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
