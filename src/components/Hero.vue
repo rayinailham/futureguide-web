@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 
 const root = ref<HTMLElement | null>(null)
 let ctx: gsap.Context | null = null
+let cleanupMouse: (() => void) | null = null
 
 onMounted(() => {
   if (!root.value) return
@@ -93,10 +94,62 @@ onMounted(() => {
       },
     })
   }, root.value)
+
+  // Mouse parallax: each headline line drifts at a different depth
+  const section = root.value
+  const lineEls = Array.from(section.querySelectorAll<HTMLElement>('[data-line]'))
+  const eyebrow = section.querySelector<HTMLElement>('[data-eyebrow]')
+
+  // Depth multipliers per layer (line 0 = slowest, line 2 = fastest)
+  const depths = [6, 10, 14]
+  const eyebrowDepth = 4
+
+  // quickTo for smooth lag-free tracking
+  const lineX = lineEls.map((el) =>
+    gsap.quickTo(el, 'x', { duration: 0.9, ease: 'power3.out' }),
+  )
+  const lineY = lineEls.map((el) =>
+    gsap.quickTo(el, 'y', { duration: 0.9, ease: 'power3.out' }),
+  )
+  const eyebrowX = eyebrow ? gsap.quickTo(eyebrow, 'x', { duration: 1.1, ease: 'power3.out' }) : null
+  const eyebrowY = eyebrow ? gsap.quickTo(eyebrow, 'y', { duration: 1.1, ease: 'power3.out' }) : null
+
+  const onMove = (e: MouseEvent) => {
+    const { innerWidth: W, innerHeight: H } = window
+    // Normalise to -0.5 … +0.5
+    const nx = e.clientX / W - 0.5
+    const ny = e.clientY / H - 0.5
+
+    lineEls.forEach((_, i) => {
+      lineX[i](nx * depths[i])
+      lineY[i](ny * depths[i] * 0.5)
+    })
+
+    eyebrowX?.(nx * eyebrowDepth)
+    eyebrowY?.(ny * eyebrowDepth * 0.5)
+  }
+
+  const onLeave = () => {
+    lineEls.forEach((_, i) => {
+      lineX[i](0)
+      lineY[i](0)
+    })
+    eyebrowX?.(0)
+    eyebrowY?.(0)
+  }
+
+  section.addEventListener('mousemove', onMove)
+  section.addEventListener('mouseleave', onLeave)
+
+  cleanupMouse = () => {
+    section.removeEventListener('mousemove', onMove)
+    section.removeEventListener('mouseleave', onLeave)
+  }
 })
 
 onUnmounted(() => {
   ctx?.revert()
+  cleanupMouse?.()
 })
 
 const stats = [
