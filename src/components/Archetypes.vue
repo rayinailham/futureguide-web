@@ -113,6 +113,14 @@ onUnmounted(() => ctx?.revert())
             <span class="mt-1.5 block font-mono text-[9px] uppercase leading-snug tracking-[0.14em] text-[var(--color-ink-500)]">
               {{ arc.tagline }}
             </span>
+            <div class="mt-3 border-t hairline pt-2">
+              <span class="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--color-ink-500)]">
+                Exemplar
+              </span>
+              <span class="mt-0.5 block text-[11px] font-medium leading-snug text-[var(--color-ink-800)]">
+                {{ arc.exemplar }}
+              </span>
+            </div>
           </article>
         </div>
 
@@ -124,15 +132,15 @@ onUnmounted(() => ctx?.revert())
 
     <!-- Desktop layout: pinned horizontal scroll -->
     <div class="hidden md:block" style="min-height: 100dvh">
-      <div class="flex h-[100dvh] min-h-[800px] flex-col">
+      <div class="flex h-[100dvh] flex-col">
         <!-- Section header (sticky inside pin) -->
-        <div class="shrink-0 px-6 pb-6 pt-24">
+        <div class="shrink-0 px-6 pb-4 pt-12">
           <div class="mx-auto max-w-[1320px]">
-            <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <span class="pill mb-5 inline-flex">12 Archetype PMAI · Taksonomi Tertutup</span>
+                <span class="pill mb-4 inline-flex">12 Archetype PMAI · Taksonomi Tertutup</span>
                 <h2
-                  class="display max-w-[22ch] text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.15] text-[var(--color-ink-900)]"
+                  class="display max-w-[22ch] text-[clamp(1.4rem,2.4vw,2.4rem)] leading-[1.15] text-[var(--color-ink-900)]"
                 >
                   Mesin klasifikasi yang tidak mengada-ngada. Ia memilih dari
                   <span class="serif-italic text-[var(--color-blue-600)]">12 archetype</span> yang sudah terstandar.
@@ -158,75 +166,84 @@ onUnmounted(() => ctx?.revert())
           </div>
         </div>
 
+        <!-- Hint: sits right above the cards -->
+        <div class="shrink-0 px-6 pb-0">
+          <div class="mx-auto flex max-w-[1320px] items-center justify-between border-t hairline pt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-500)]">
+            <span>Scroll untuk menggeser &rarr;</span>
+            <span>12 archetype &middot; pencocokan berbasis pola, bukan opini</span>
+          </div>
+        </div>
+
         <!-- Horizontal scroll track -->
-        <div ref="track" class="h-track min-h-0 flex-1 py-16">
+        <div ref="track" class="h-track min-h-0 flex-1 pb-4 pt-2">
           <div ref="inner" class="h-track-inner">
             <article
               v-for="arc in archetypes"
               :key="arc.id"
               data-arc-card
-              class="bezel relative flex w-[480px] shrink-0 flex-col"
+              class="bezel relative flex w-[400px] shrink-0 flex-col"
             >
               <div
-                class="bezel-inner flex flex-col gap-8 p-10"
+                class="bezel-inner flex flex-col gap-3.5 p-5"
               >
                 <!-- Top: index + motif -->
                 <div class="flex items-start justify-between">
-                  <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2.5">
                     <span
-                      class="flex h-7 items-center justify-center rounded-full border hairline px-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink-600)]"
+                      class="flex h-6 items-center justify-center rounded-full border hairline px-2 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-ink-600)]"
                     >
                       {{ String(arc.id).padStart(2, '0') }}
                     </span>
-                    <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                    <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
                       Archetype
                     </span>
                   </div>
-                  <span class="text-4xl text-[var(--color-blue-500)]">{{ arc.motif }}</span>
+                  <span class="text-2xl text-[var(--color-blue-500)]">{{ arc.motif }}</span>
                 </div>
 
                 <!-- Name + tagline -->
-                <div class="flex flex-col gap-2.5">
-                  <h3 class="display text-4xl text-[var(--color-ink-900)] md:text-5xl">
+                <div class="flex flex-col gap-1">
+                  <h3 class="display text-2xl text-[var(--color-ink-900)]">
                     {{ arc.name }}
                   </h3>
-                  <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">
+                  <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">
                     {{ arc.tagline }}
                   </span>
                 </div>
 
                 <!-- Description -->
-                <p class="text-base leading-relaxed text-[var(--color-ink-600)]">
+                <p class="line-clamp-4 text-sm leading-relaxed text-[var(--color-ink-600)]">
                   {{ arc.description }}
                 </p>
 
+                <!-- Exemplar -->
+                <div class="rounded-xl border hairline bg-[color-mix(in_oklab,var(--color-ink-900)_2%,transparent)] p-3">
+                  <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                    Exemplar
+                  </span>
+                  <div class="mt-1 flex items-baseline gap-2">
+                    <span class="display text-base text-[var(--color-ink-900)]">{{ arc.exemplar }}</span>
+                  </div>
+                  <p class="mt-1 line-clamp-2 text-[12px] leading-snug text-[var(--color-ink-600)]">
+                    {{ arc.exemplarNote }}
+                  </p>
+                </div>
+
                 <!-- Footer (pinned to bottom) -->
-                <div class="mt-auto flex items-center justify-between border-t hairline pt-4">
-                  <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                <div class="mt-auto flex items-center justify-between border-t hairline pt-3">
+                  <span class="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
                     PMAI · {{ arc.id }} of 12
                   </span>
                   <span
-                    class="flex h-7 w-7 items-center justify-center rounded-full border hairline text-[var(--color-ink-700)]"
+                    class="flex h-6 w-6 items-center justify-center rounded-full border hairline text-[var(--color-ink-700)]"
                   >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
                       <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </span>
                 </div>
               </div>
             </article>
-          </div>
-        </div>
-
-        <!-- Hint -->
-        <div class="shrink-0 px-6 pb-10 pt-8">
-          <div
-            class="mx-auto flex max-w-[1320px] items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]"
-          >
-            <span>Scroll untuk menggeser →</span>
-            <span class="hidden md:inline">
-              12 archetype · pencocokan berbasis pola, bukan opini
-            </span>
           </div>
         </div>
       </div>
