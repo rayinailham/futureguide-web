@@ -46,20 +46,20 @@ onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
-  <section ref="root" class="relative px-6 py-24 md:py-36">
+  <section ref="root" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36">
     <div class="mx-auto max-w-[1320px]">
-      <div class="mb-14 flex items-center justify-between">
+      <div class="mb-10 flex items-center justify-between md:mb-14">
         <span class="pill">Endorsement Akademis</span>
         <span class="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)] md:inline">
           UNJ — Bimbingan & Konseling
         </span>
       </div>
 
-      <div class="grid gap-12 md:grid-cols-12 md:gap-16">
+      <div class="grid gap-8 sm:gap-12 md:grid-cols-12 md:gap-16">
         <!-- Quote -->
         <div class="md:col-span-8">
           <h2
-            class="display text-[clamp(1.4rem,3.2vw,2.8rem)] text-[var(--color-ink-900)]"
+            class="display text-[clamp(1.25rem,5vw,2.8rem)] text-[var(--color-ink-900)]"
           >
             <span class="block overflow-hidden">
               <span data-quote-line class="block">"Ini bukan kuis biasa, tapi merupakan sebuah</span>
@@ -81,9 +81,9 @@ onUnmounted(() => ctx?.revert())
         <!-- Endorser card -->
         <div class="md:col-span-4 md:pt-4">
           <div data-card-fade class="bezel">
-            <div class="bezel-inner p-6">
-              <div class="flex items-center gap-4">
-                <div class="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl">
+            <div class="bezel-inner p-5 sm:p-6">
+              <div class="flex items-center gap-3 sm:gap-4">
+                <div class="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl sm:h-14 sm:w-14">
                   <img
                     src="/prof-dede.jpg"
                     alt="Prof. Dede Rahmat Hidayat"
@@ -91,35 +91,35 @@ onUnmounted(() => ctx?.revert())
                   />
                 </div>
                 <div class="flex flex-col">
-                  <span class="text-base font-medium tracking-tight text-[var(--color-ink-900)]">
+                  <span class="text-sm font-medium tracking-tight text-[var(--color-ink-900)] sm:text-base">
                     Prof. Dede Rahmat Hidayat
                   </span>
                   <span class="text-xs text-[var(--color-ink-500)]">M.Psi., Ph.D.</span>
                 </div>
               </div>
 
-              <div class="mt-5 grid gap-3 border-t hairline pt-5">
+              <div class="mt-4 grid gap-2.5 border-t hairline pt-4 sm:mt-5 sm:gap-3 sm:pt-5">
                 <div class="flex items-start justify-between gap-3">
                   <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">Posisi</span>
-                  <span class="text-right text-sm text-[var(--color-ink-800)]">Guru Besar BK, UNJ</span>
+                  <span class="text-right text-xs text-[var(--color-ink-800)] sm:text-sm">Guru Besar BK, UNJ</span>
                 </div>
                 <div class="flex items-start justify-between gap-3">
                   <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">Dikukuhkan</span>
-                  <span class="text-right text-sm text-[var(--color-ink-800)]">20 Desember 2022</span>
+                  <span class="text-right text-xs text-[var(--color-ink-800)] sm:text-sm">20 Desember 2022</span>
                 </div>
                 <div class="flex items-start justify-between gap-3">
                   <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">Spesialisasi</span>
-                  <span class="text-right text-sm text-[var(--color-ink-800)]">Career Development & Counseling</span>
+                  <span class="text-right text-xs text-[var(--color-ink-800)] sm:text-sm">Career Development & Counseling</span>
                 </div>
                 <div class="flex items-start justify-between gap-3">
                   <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">Peran</span>
-                  <span class="text-right text-sm text-[var(--color-ink-800)]">Asesor LAMDIK</span>
+                  <span class="text-right text-xs text-[var(--color-ink-800)] sm:text-sm">Asesor LAMDIK</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <p data-card-fade class="mt-5 max-w-sm text-sm leading-relaxed text-[var(--color-ink-600)]">
+          <p data-card-fade class="mt-4 max-w-sm text-sm leading-relaxed text-[var(--color-ink-600)] sm:mt-5">
             Pakar nasional career guidance dan psychological well-being. Penulis buku
             referensi utama psikologi & BK di Indonesia.
           </p>

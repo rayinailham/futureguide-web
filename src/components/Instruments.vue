@@ -51,7 +51,7 @@ onUnmounted(() => ctx?.revert())
   <section
     ref="root"
     id="instruments"
-    class="relative px-6 py-24 md:py-36"
+    class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36"
   >
     <!-- Subtle texture only at the section seam -->
     <div
@@ -66,12 +66,12 @@ onUnmounted(() => ctx?.revert())
     ></div>
 
     <div class="mx-auto max-w-[1320px]">
-      <div class="mb-14 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+      <div class="mb-10 flex flex-col items-start justify-between gap-5 sm:gap-6 md:mb-14 md:flex-row md:items-end">
         <div class="max-w-2xl">
-          <span class="pill mb-6 inline-flex">Tiga Instrumen, 200 Pertanyaan</span>
+          <span class="pill mb-4 inline-flex md:mb-6">Tiga Instrumen, 200 Pertanyaan</span>
           <h2
             data-section-head
-            class="display text-[clamp(2rem,5vw,4rem)] text-[var(--color-ink-900)]"
+            class="display text-[clamp(1.75rem,6vw,4rem)] text-[var(--color-ink-900)]"
           >
             <span class="block overflow-hidden"><span class="block">Tiga lensa berbeda,</span></span>
             <span class="block overflow-hidden">
@@ -90,13 +90,13 @@ onUnmounted(() => ctx?.revert())
       </div>
 
       <!-- Asymmetric bento -->
-      <div class="grid gap-4 md:grid-cols-12 md:gap-5">
+      <div class="grid gap-3 sm:gap-4 md:grid-cols-12 md:gap-5">
         <!-- RIASEC -->
         <article
           data-tile
           class="bezel md:col-span-7 md:row-span-2"
         >
-          <div class="bezel-inner relative h-full overflow-hidden p-8 md:p-10">
+          <div class="bezel-inner relative h-full overflow-hidden p-5 sm:p-7 md:p-10">
             <!-- Tile-internal accent texture -->
             <div
               class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full"
@@ -109,34 +109,35 @@ onUnmounted(() => ctx?.revert())
               "
             ></div>
 
-            <div class="relative flex h-full flex-col justify-between gap-10">
-              <div class="flex items-start justify-between gap-4">
-                <div class="flex flex-col gap-3">
-                  <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+            <div class="relative flex h-full flex-col justify-between gap-7 md:gap-10">
+              <div class="flex items-start justify-between gap-3 sm:gap-4">
+                <div class="flex flex-col gap-2 sm:gap-3">
+                  <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
                     Instrumen 01 — Holland
                   </span>
-                  <h3 class="display text-5xl text-[var(--color-ink-900)] md:text-7xl">
+                  <h3 class="display text-3xl text-[var(--color-ink-900)] sm:text-5xl md:text-7xl">
                     {{ instruments[0].name }}
                   </h3>
-                  <span class="text-sm text-[var(--color-ink-600)]">{{ instruments[0].fullName }}</span>
+                  <span class="text-xs text-[var(--color-ink-600)] sm:text-sm">{{ instruments[0].fullName }}</span>
                 </div>
                 <div
-                  class="flex flex-col items-end gap-1 rounded-2xl border hairline bg-[color-mix(in_oklab,_var(--color-ink-900)_4%,transparent)] px-4 py-3"
+                  class="flex flex-col items-end gap-0.5 rounded-xl border hairline bg-[color-mix(in_oklab,_var(--color-ink-900)_4%,transparent)] px-2.5 py-2 sm:gap-1 sm:rounded-2xl sm:px-4 sm:py-3"
                 >
-                  <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">items</span>
-                  <span class="display text-3xl text-[var(--color-blue-600)]">{{ instruments[0].items }}</span>
+                  <span class="font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.18em]">items</span>
+                  <span class="display text-2xl text-[var(--color-blue-600)] sm:text-3xl">{{ instruments[0].items }}</span>
                 </div>
               </div>
 
-              <div class="grid items-center gap-6 md:grid-cols-12">
+              <div class="grid items-center gap-5 sm:gap-6 md:grid-cols-12">
                 <p class="md:col-span-7 text-sm leading-relaxed text-[var(--color-ink-600)] md:text-base">
                   {{ instruments[0].description }}
                 </p>
 
                 <!-- RIASEC radar preview -->
                 <div class="md:col-span-5 flex flex-col items-center gap-2">
-                  <RadarChart :facets="instruments[0].facets" :size="240" />
-                  <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                  <RadarChart :facets="instruments[0].facets" :size="200" class="sm:hidden" />
+                  <RadarChart :facets="instruments[0].facets" :size="240" class="hidden sm:block" />
+                  <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
                     Sample profile · radar preview
                   </span>
                 </div>
@@ -146,9 +147,9 @@ onUnmounted(() => ctx?.revert())
                 <li
                   v-for="facet in instruments[0].facets"
                   :key="facet"
-                  class="flex items-center justify-between bg-[var(--color-paper)] px-4 py-3"
+                  class="flex items-center justify-between bg-[var(--color-paper)] px-3 py-2.5 sm:px-4 sm:py-3"
                 >
-                  <span class="text-sm text-[var(--color-ink-800)]">{{ facet }}</span>
+                  <span class="text-xs text-[var(--color-ink-800)] sm:text-sm">{{ facet }}</span>
                   <span class="font-mono text-[10px] text-[var(--color-ink-400)]">{{ facet.charAt(0) }}</span>
                 </li>
               </ul>
@@ -158,31 +159,31 @@ onUnmounted(() => ctx?.revert())
 
         <!-- OCEAN -->
         <article data-tile class="bezel md:col-span-5">
-          <div class="bezel-inner relative overflow-hidden p-8 md:p-9">
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex flex-col gap-2">
-                <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+          <div class="bezel-inner relative overflow-hidden p-5 sm:p-7 md:p-9">
+            <div class="flex items-start justify-between gap-3 sm:gap-4">
+              <div class="flex flex-col gap-1.5 sm:gap-2">
+                <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
                   Instrumen 02 — Big Five
                 </span>
-                <h3 class="display text-4xl text-[var(--color-ink-900)] md:text-5xl">
+                <h3 class="display text-2xl text-[var(--color-ink-900)] sm:text-4xl md:text-5xl">
                   {{ instruments[1].name }}
                 </h3>
-                <span class="text-sm text-[var(--color-ink-600)]">{{ instruments[1].fullName }}</span>
+                <span class="text-xs text-[var(--color-ink-600)] sm:text-sm">{{ instruments[1].fullName }}</span>
               </div>
               <span
-                class="font-mono text-2xl font-medium text-[var(--color-blue-600)]"
+                class="font-mono text-xl font-medium text-[var(--color-blue-600)] sm:text-2xl"
               >{{ instruments[1].items }}</span>
             </div>
 
-            <p class="mt-5 text-sm leading-relaxed text-[var(--color-ink-600)]">
+            <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-600)] sm:mt-5">
               {{ instruments[1].description }}
             </p>
 
-            <div class="mt-6 flex flex-wrap gap-1.5">
+            <div class="mt-5 flex flex-wrap gap-1.5 sm:mt-6">
               <span
                 v-for="facet in instruments[1].facets"
                 :key="facet"
-                class="rounded-full border hairline px-3 py-1 text-xs text-[var(--color-ink-700)]"
+                class="rounded-full border hairline px-2.5 py-0.5 text-[11px] text-[var(--color-ink-700)] sm:px-3 sm:py-1 sm:text-xs"
               >
                 {{ facet }}
               </span>
@@ -192,32 +193,32 @@ onUnmounted(() => ctx?.revert())
 
         <!-- VIA-IS -->
         <article data-tile class="bezel md:col-span-5">
-          <div class="bezel-inner relative overflow-hidden p-8 md:p-9">
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex flex-col gap-2">
-                <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+          <div class="bezel-inner relative overflow-hidden p-5 sm:p-7 md:p-9">
+            <div class="flex items-start justify-between gap-3 sm:gap-4">
+              <div class="flex flex-col gap-1.5 sm:gap-2">
+                <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
                   Instrumen 03 — Character Strengths
                 </span>
-                <h3 class="display text-4xl text-[var(--color-ink-900)] md:text-5xl">
+                <h3 class="display text-2xl text-[var(--color-ink-900)] sm:text-4xl md:text-5xl">
                   {{ instruments[2].name }}
                 </h3>
-                <span class="text-sm text-[var(--color-ink-600)]">{{ instruments[2].fullName }}</span>
+                <span class="text-xs text-[var(--color-ink-600)] sm:text-sm">{{ instruments[2].fullName }}</span>
               </div>
-              <span class="font-mono text-2xl font-medium text-[var(--color-blue-600)]">{{ instruments[2].items }}</span>
+              <span class="font-mono text-xl font-medium text-[var(--color-blue-600)] sm:text-2xl">{{ instruments[2].items }}</span>
             </div>
 
-            <p class="mt-5 text-sm leading-relaxed text-[var(--color-ink-600)]">
+            <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-600)] sm:mt-5">
               {{ instruments[2].description }}
             </p>
 
-            <ul class="mt-6 grid grid-cols-3 gap-2">
+            <ul class="mt-5 grid grid-cols-2 gap-2 sm:mt-6 sm:grid-cols-3">
               <li
                 v-for="(facet, i) in instruments[2].facets"
                 :key="facet"
-                class="flex flex-col gap-1 rounded-xl border hairline px-3 py-2"
+                class="flex flex-col gap-0.5 rounded-xl border hairline px-2.5 py-2 sm:gap-1 sm:px-3 sm:py-2"
               >
-                <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">0{{ i + 1 }}</span>
-                <span class="text-xs text-[var(--color-ink-800)]">{{ facet }}</span>
+                <span class="font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--color-ink-400)] sm:tracking-[0.18em]">0{{ i + 1 }}</span>
+                <span class="text-[11px] text-[var(--color-ink-800)] sm:text-xs">{{ facet }}</span>
               </li>
             </ul>
           </div>
@@ -226,11 +227,11 @@ onUnmounted(() => ctx?.revert())
 
       <!-- Cross-reference note -->
       <div
-        class="mt-6 grid gap-4 rounded-2xl border hairline bg-[color-mix(in_oklab,_var(--color-blue-500)_4%,transparent)] p-6 md:grid-cols-12 md:items-center md:gap-8 md:p-8"
+        class="mt-5 grid gap-4 rounded-2xl border hairline bg-[color-mix(in_oklab,_var(--color-blue-500)_4%,transparent)] p-5 sm:p-6 md:mt-6 md:grid-cols-12 md:items-center md:gap-8 md:p-8"
       >
         <div class="md:col-span-4 flex items-center gap-3">
           <div
-            class="flex h-9 w-9 items-center justify-center rounded-full border hairline bg-[var(--color-paper)]"
+            class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border hairline bg-[var(--color-paper)]"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
               <circle cx="9" cy="9" r="5" stroke="currentColor" />

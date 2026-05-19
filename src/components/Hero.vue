@@ -201,7 +201,7 @@ const stats = [
 
     <!-- Content -->
     <div
-      class="relative mx-auto flex max-w-[1320px] flex-col gap-8 px-6 pb-16 pt-28 md:gap-12 md:pb-20 md:pt-32"
+      class="relative mx-auto flex max-w-[1320px] flex-col gap-6 px-5 pb-12 pt-24 sm:gap-8 sm:px-6 sm:pb-16 sm:pt-28 md:gap-12 md:pb-20 md:pt-32"
       style="min-height: 100dvh"
     >
       <!-- Eyebrow -->
@@ -222,7 +222,7 @@ const stats = [
 
       <!-- Headline (split lines, asymmetric editorial) -->
       <h1
-        class="display max-w-[18ch] text-[clamp(3rem,9vw,7.5rem)] text-[var(--color-ink-900)]"
+        class="display max-w-[18ch] text-[clamp(2.25rem,9vw,7.5rem)] text-[var(--color-ink-900)]"
       >
         <span class="block overflow-hidden pb-[0.15em] -mb-[0.15em]">
           <span data-line class="block">Pemetaan diri</span>
@@ -238,10 +238,10 @@ const stats = [
       </h1>
 
       <!-- Sub + CTA, split layout -->
-      <div class="grid gap-10 md:grid-cols-12">
+      <div class="grid gap-6 sm:gap-8 md:grid-cols-12 md:gap-10">
         <p
           data-sub
-          class="md:col-span-5 max-w-[42ch] text-balance text-base leading-relaxed text-[var(--color-ink-600)] md:text-lg"
+          class="md:col-span-5 max-w-[42ch] text-balance text-sm leading-relaxed text-[var(--color-ink-600)] sm:text-base md:text-lg"
         >
           Tiga instrumen psikometri tervalidasi —
           <span class="text-[var(--color-ink-900)]">RIASEC, OCEAN, VIA-IS</span>
@@ -249,9 +249,9 @@ const stats = [
           Bukan kuis kepribadian, melainkan sebuah titik awal percakapan jujur soal arah hidupmu.
         </p>
 
-        <div class="md:col-span-7 flex flex-col gap-8 md:items-end md:justify-end">
+        <div class="md:col-span-7 flex flex-col gap-6 md:items-end md:justify-end md:gap-8">
           <div class="flex flex-col items-start gap-3 md:items-end">
-            <div class="flex flex-wrap items-center gap-3">
+            <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
               <a
                 data-cta
                 href="#pricing"
@@ -279,10 +279,10 @@ const stats = [
               v-for="s in stats"
               :key="s.k"
               data-meta
-              class="flex h-28 flex-col justify-between bg-[var(--color-paper)] p-4"
+              class="flex h-20 flex-col justify-between bg-[var(--color-paper)] p-3 sm:h-28 sm:p-4"
             >
-              <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] line-clamp-2">{{ s.v }}</span>
-              <span class="display text-3xl text-[var(--color-ink-900)] leading-none">{{ s.k }}</span>
+              <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--color-ink-500)] line-clamp-2 sm:text-[11px] sm:tracking-[0.18em]">{{ s.v }}</span>
+              <span class="display text-2xl text-[var(--color-ink-900)] leading-none sm:text-3xl">{{ s.k }}</span>
             </li>
           </ul>
         </div>
@@ -290,7 +290,7 @@ const stats = [
 
       <!-- Footer marker -->
       <div
-        class="mt-auto flex flex-col items-start justify-between gap-4 border-t hairline pt-6 md:flex-row md:items-center"
+        class="mt-auto flex flex-col items-start justify-between gap-4 border-t hairline pt-5 sm:pt-6 md:flex-row md:items-center"
       >
         <div class="flex items-center gap-3">
           <span

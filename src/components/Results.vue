@@ -96,27 +96,48 @@ const funFacts = [
 </script>
 
 <template>
-  <section ref="root" id="results" class="relative px-6 py-24 md:py-36">
+  <section ref="root" id="results" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36">
     <div class="mx-auto max-w-[1320px]">
       <!-- Section header -->
-      <div class="mb-14 grid gap-8 md:grid-cols-12">
+      <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12">
         <div class="md:col-span-7">
-          <span class="pill mb-6 inline-flex">Hasil & Basis Ilmiah</span>
-          <h2 class="display text-[clamp(2rem,5vw,4.25rem)] text-[var(--color-ink-900)]">
+          <span class="pill mb-4 inline-flex md:mb-6">Hasil & Basis Ilmiah</span>
+          <h2 class="display text-[clamp(1.75rem,7vw,4.25rem)] text-[var(--color-ink-900)]">
             Laporan yang
             <span class="serif-italic text-[var(--color-blue-600)]">bisa ditelusuri</span>,
             bukan opini AI.
           </h2>
         </div>
-        <p class="md:col-span-5 self-end max-w-md text-base leading-relaxed text-[var(--color-ink-600)]">
+        <p class="md:col-span-5 self-end max-w-md text-sm leading-relaxed text-[var(--color-ink-600)] md:text-base">
           Setiap interpretasi ditambatkan ke jurnal akademis spesifik melalui
           sistem RAG. Saat sistem RAG menunjukkan "kamu condong Investigative", ia harus bisa
           menunjukkan riset yang mendukungnya.
         </p>
       </div>
 
-      <!-- 6 result blocks as a clean editorial list (no card overuse) -->
-      <div data-results-list class="border-y hairline">
+      <!-- 6 result blocks — 2-col compact tiles on mobile, editorial list on md+ -->
+      <!-- Mobile: 2-col compact tile grid -->
+      <div data-results-list class="grid grid-cols-2 gap-3 md:hidden">
+        <div
+          v-for="b in resultBlocks"
+          :key="`m-${b.tag}`"
+          data-result-row
+          class="rounded-2xl border hairline bg-[var(--color-paper)] p-4"
+        >
+          <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue-600)]">
+            / {{ b.tag }}
+          </span>
+          <h3 class="mt-2.5 text-[15px] font-medium leading-tight tracking-tight text-[var(--color-ink-900)]">
+            {{ b.title }}
+          </h3>
+          <p class="mt-2 text-[12px] leading-relaxed text-[var(--color-ink-600)]">
+            {{ b.body }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Desktop: editorial list -->
+      <div class="hidden border-y hairline md:block">
         <div
           v-for="(b, i) in resultBlocks"
           :key="b.tag"
@@ -139,50 +160,58 @@ const funFacts = [
       </div>
 
       <!-- Scientific basis: RAG + Closed taxonomy + Atomic submission -->
-      <div data-rag-grid class="mt-20 grid gap-5 md:grid-cols-12">
+      <div data-rag-grid class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:mt-20 md:grid-cols-12 md:gap-5">
         <article data-rag-card class="bezel md:col-span-5">
-          <div class="bezel-inner relative h-full overflow-hidden p-8 md:p-10">
-            <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
-              Retrieval-Augmented Generation
+          <div class="bezel-inner relative h-full overflow-hidden p-4 sm:p-7 md:p-10">
+            <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:tracking-[0.22em] md:text-[10px]">
+              RAG
             </span>
-            <h3 class="display mt-4 text-3xl text-[var(--color-ink-900)] md:text-4xl">
+            <h3 class="display mt-2.5 text-xl text-[var(--color-ink-900)] sm:mt-4 sm:text-3xl md:text-4xl">
               <span class="text-[var(--color-blue-600)]">121</span> jurnal
               peer-reviewed
             </h3>
-            <p class="mt-4 max-w-sm text-sm leading-relaxed text-[var(--color-ink-600)]">
+            <p class="mt-2 text-[12px] leading-relaxed text-[var(--color-ink-600)] sm:mt-4 sm:text-sm md:max-w-sm">
               Mesin analisis menarik konteks dari 121 studi tentang RIASEC, OCEAN,
-              VIA-IS, serta hubungan lintas ketiganya — bukan dari pengetahuan generik.
+              VIA-IS — bukan dari pengetahuan generik.
             </p>
 
-            <div class="mt-7 flex flex-col gap-2">
-              <div class="flex items-center justify-between rounded-xl border hairline px-4 py-2.5">
-                <span class="font-mono text-[11px] text-[var(--color-ink-500)]">Faber & Mayer 2009</span>
-                <span class="font-mono text-[10px] text-[var(--color-blue-600)]">retrieved</span>
+            <!-- Retrieved chips (full list on md+, summary on mobile) -->
+            <div class="mt-4 flex flex-col gap-1.5 sm:mt-7 sm:gap-2">
+              <div class="flex items-center justify-between rounded-lg border hairline px-2.5 py-1.5 sm:rounded-xl sm:px-4 sm:py-2.5">
+                <span class="font-mono text-[10px] text-[var(--color-ink-500)] sm:text-[11px]">Holland 1997</span>
+                <span class="font-mono text-[9px] text-[var(--color-blue-600)] sm:text-[10px]">retrieved</span>
               </div>
-              <div class="flex items-center justify-between rounded-xl border hairline px-4 py-2.5">
-                <span class="font-mono text-[11px] text-[var(--color-ink-500)]">Holland 1997</span>
-                <span class="font-mono text-[10px] text-[var(--color-blue-600)]">retrieved</span>
+              <div class="hidden flex-col gap-2 sm:flex">
+                <div class="flex items-center justify-between rounded-xl border hairline px-4 py-2.5">
+                  <span class="font-mono text-[11px] text-[var(--color-ink-500)]">Faber & Mayer 2009</span>
+                  <span class="font-mono text-[10px] text-[var(--color-blue-600)]">retrieved</span>
+                </div>
+                <div class="flex items-center justify-between rounded-xl border hairline px-4 py-2.5">
+                  <span class="font-mono text-[11px] text-[var(--color-ink-500)]">Peterson & Seligman 2004</span>
+                  <span class="font-mono text-[10px] text-[var(--color-blue-600)]">retrieved</span>
+                </div>
               </div>
-              <div class="flex items-center justify-between rounded-xl border hairline px-4 py-2.5">
-                <span class="font-mono text-[11px] text-[var(--color-ink-500)]">Peterson & Seligman 2004</span>
-                <span class="font-mono text-[10px] text-[var(--color-blue-600)]">retrieved</span>
-              </div>
+              <span class="font-mono text-[10px] text-[var(--color-ink-400)] sm:hidden">+ 120 lainnya</span>
             </div>
           </div>
         </article>
 
         <article data-rag-card class="bezel md:col-span-7">
-          <div class="bezel-inner relative h-full overflow-hidden p-8 md:p-10">
-            <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
-              Chat AI Pasca-Assessment
+          <div class="bezel-inner relative h-full overflow-hidden p-4 sm:p-7 md:p-10">
+            <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:tracking-[0.22em] md:text-[10px]">
+              Chat AI
             </span>
-            <h3 class="display mt-4 max-w-md text-3xl text-[var(--color-ink-900)] md:text-4xl">
+            <h3 class="display mt-2.5 text-xl text-[var(--color-ink-900)] sm:mt-4 sm:text-3xl md:max-w-md md:text-4xl">
               Diskusi yang tahu konteks
               <span class="serif-italic text-[var(--color-blue-600)]">profilmu</span>.
             </h3>
 
-            <!-- Mini chat preview -->
-            <div class="mt-7 grid gap-3 md:max-w-xl">
+            <p class="mt-2 text-[12px] leading-relaxed text-[var(--color-ink-600)] sm:hidden">
+              Tanya-jawab pasca asesmen, grounded ke 121 jurnal &amp; hasil pribadimu.
+            </p>
+
+            <!-- Mini chat preview (md+ only — busy on small screens) -->
+            <div class="mt-7 hidden gap-3 sm:grid md:max-w-xl">
               <div
                 class="ml-auto max-w-[88%] rounded-2xl rounded-br-sm bg-[var(--color-ink-900)] px-4 py-3 text-sm text-[var(--color-paper)]"
               >
@@ -207,38 +236,48 @@ const funFacts = [
               </div>
             </div>
 
-            <p class="mt-7 max-w-md text-xs leading-relaxed text-[var(--color-ink-500)]">
+            <!-- Mobile-only mini bubble teaser -->
+            <div class="mt-3 flex flex-wrap gap-1.5 sm:hidden">
+              <span class="rounded-full border hairline px-2 py-0.5 font-mono text-[10px] text-[var(--color-ink-500)]">
+                SSE streaming
+              </span>
+              <span class="rounded-full border hairline px-2 py-0.5 font-mono text-[10px] text-[var(--color-ink-500)]">
+                ref-grounded
+              </span>
+            </div>
+
+            <p class="mt-7 hidden text-xs leading-relaxed text-[var(--color-ink-500)] sm:block md:max-w-md">
               SSE streaming · 1 sesi chat per assessment · grounded ke 121 jurnal
               dan hasil pribadimu.
             </p>
           </div>
         </article>
 
-        <!-- Flow + tech -->
-        <article data-rag-card class="bezel md:col-span-7">
-          <div class="bezel-inner relative h-full overflow-hidden p-8 md:p-10">
-            <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+        <!-- Flow + tech (full-width on mobile, span both cols) -->
+        <article data-rag-card class="bezel col-span-2 md:col-span-7">
+          <div class="bezel-inner relative h-full overflow-hidden p-5 sm:p-7 md:p-10">
+            <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
               Cara Kerjanya
             </span>
-            <h3 class="display mt-4 text-3xl text-[var(--color-ink-900)] md:text-4xl">
+            <h3 class="display mt-3 text-2xl text-[var(--color-ink-900)] sm:mt-4 sm:text-3xl md:text-4xl">
               Dari daftar sampai ngobrol dengan AI, semuanya
               <span class="serif-italic text-[var(--color-blue-600)]">dalam satu sore</span>.
             </h3>
 
-            <ol data-flow class="mt-7 space-y-3">
+            <ol data-flow class="mt-5 grid gap-2 sm:mt-7 sm:flex sm:flex-col sm:space-y-3 sm:gap-0">
               <li
                 v-for="(item, i) in flow"
                 :key="item.step"
                 data-flow-step
-                class="flex items-center gap-4 rounded-xl border hairline bg-[var(--color-paper)] px-4 py-3"
+                class="flex items-center gap-2.5 rounded-xl border hairline bg-[var(--color-paper)] px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-3"
               >
                 <span
-                  class="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--color-blue-500)] font-mono text-[11px] font-medium text-white"
+                  class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-blue-500)] font-mono text-[10px] font-medium text-white sm:h-7 sm:w-7 sm:text-[11px]"
                 >
                   {{ String(i + 1).padStart(2, '0') }}
                 </span>
-                <span class="text-sm text-[var(--color-ink-800)] md:text-base">{{ item.step }}</span>
-                <span class="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)]">
+                <span class="text-[12px] leading-snug text-[var(--color-ink-800)] sm:text-sm md:text-base">{{ item.step }}</span>
+                <span class="ml-auto hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-400)] sm:inline">
                   {{ item.tag }}
                 </span>
               </li>
@@ -246,26 +285,26 @@ const funFacts = [
           </div>
         </article>
 
-        <article data-rag-card class="bezel md:col-span-5">
-          <div class="bezel-inner relative h-full overflow-hidden p-8 md:p-10">
-            <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+        <article data-rag-card class="bezel col-span-2 md:col-span-5">
+          <div class="bezel-inner relative h-full overflow-hidden p-5 sm:p-7 md:p-10">
+            <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
               Fun Facts
             </span>
-            <h3 class="display mt-4 text-3xl text-[var(--color-ink-900)] md:text-4xl">
+            <h3 class="display mt-3 text-2xl text-[var(--color-ink-900)] sm:mt-4 sm:text-3xl md:text-4xl">
               Yang
               <span class="serif-italic text-[var(--color-blue-600)]">jarang diceritakan</span>
               tentang pemetaan karier.
             </h3>
 
-            <ul class="mt-7 space-y-4">
+            <ul class="mt-5 space-y-3 sm:mt-7 sm:space-y-4">
               <li
                 v-for="(item, i) in funFacts"
                 :key="i"
-                class="group relative border-t hairline pt-4 first:border-t-0 first:pt-0"
+                class="group relative border-t hairline pt-3 first:border-t-0 first:pt-0 sm:pt-4"
               >
-                <div class="mb-2 flex items-center gap-3">
+                <div class="mb-1.5 flex items-center gap-2 sm:mb-2 sm:gap-3">
                   <span
-                    class="flex h-6 items-center rounded-full border hairline bg-[color-mix(in_oklab,_var(--color-blue-500)_8%,transparent)] px-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-blue-700)]"
+                    class="flex h-5 items-center rounded-full border hairline bg-[color-mix(in_oklab,_var(--color-blue-500)_8%,transparent)] px-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--color-blue-700)] sm:h-6 sm:px-2.5 sm:text-[10px] sm:tracking-[0.18em]"
                   >
                     {{ item.tag }}
                   </span>
@@ -273,7 +312,7 @@ const funFacts = [
                     0{{ i + 1 }} / 0{{ funFacts.length }}
                   </span>
                 </div>
-                <p class="text-sm leading-relaxed text-[var(--color-ink-700)]">
+                <p class="text-[13px] leading-relaxed text-[var(--color-ink-700)] sm:text-sm">
                   {{ item.fact }}
                 </p>
               </li>

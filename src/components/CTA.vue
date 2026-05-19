@@ -44,7 +44,7 @@ onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
-  <section ref="root" class="relative overflow-hidden px-6 py-28 md:py-40">
+  <section ref="root" class="relative overflow-hidden px-5 py-20 sm:px-6 sm:py-28 md:py-40">
     <!-- Subtle texture: soft halftone fading from right -->
     <div
       class="pointer-events-none absolute inset-0"
@@ -67,7 +67,7 @@ onUnmounted(() => ctx?.revert())
       </span>
 
       <h2
-        class="display mt-6 max-w-[22ch] text-[clamp(2.5rem,8vw,7rem)] text-[var(--color-ink-900)]"
+        class="display mt-5 max-w-[22ch] text-[clamp(1.875rem,8vw,7rem)] text-[var(--color-ink-900)] sm:mt-6"
         style="letter-spacing: -0.025em"
       >
         <span class="block overflow-hidden">
@@ -87,21 +87,21 @@ onUnmounted(() => ctx?.revert())
 
       <p
         data-cta-tail
-        class="mt-8 max-w-xl font-mono text-[10px] uppercase leading-relaxed tracking-[0.18em] text-[var(--color-ink-500)]"
+        class="mt-6 max-w-xl font-mono text-[10px] uppercase leading-relaxed tracking-[0.18em] text-[var(--color-ink-500)] sm:mt-8"
       >
         Letter to Miss Fanny Bowditch, 22 October 1916 ·
         <span class="text-[var(--color-ink-700)]">C.G. Jung Letters, Vol. 1: 1906&ndash;1950</span>,
         ed. Gerhard Adler &amp; Aniela Jaffé · Princeton University Press, 1973, p. 33
       </p>
 
-      <div data-cta-tail class="mt-14 grid gap-10 md:grid-cols-12 md:items-end">
-        <p class="md:col-span-6 max-w-md text-base leading-relaxed text-[var(--color-ink-600)] md:text-lg">
+      <div data-cta-tail class="mt-10 grid gap-6 sm:mt-14 sm:gap-10 md:grid-cols-12 md:items-end">
+        <p class="md:col-span-6 max-w-md text-sm leading-relaxed text-[var(--color-ink-600)] sm:text-base md:text-lg">
           200 pertanyaan, dalam satu sore. Hasilnya: laporan yang bisa kamu rujuk
           setiap kali kamu merasa kehilangan arah &mdash; pilih jurusan,
           terima tawaran kerja, atau ganti arah karier.
         </p>
         <div class="md:col-span-6 flex flex-col gap-3 md:items-end">
-          <div class="flex flex-wrap items-center gap-3 md:justify-end">
+          <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 md:justify-end">
             <a href="#pricing" class="btn-primary">
               <span>Mulai dari Rp 200.000</span>
               <span class="btn-icon">

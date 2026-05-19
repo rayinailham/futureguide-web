@@ -96,18 +96,18 @@ onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
-  <section ref="root" id="faq" class="relative px-6 py-24 md:py-36">
+  <section ref="root" id="faq" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36">
     <div class="mx-auto max-w-[1320px]">
-      <div class="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
+      <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12 md:items-end">
         <div class="md:col-span-7">
-          <span class="pill mb-6 inline-flex">FAQ</span>
-          <h2 class="display text-[clamp(2rem,5vw,4.25rem)] text-[var(--color-ink-900)]">
+          <span class="pill mb-4 inline-flex md:mb-6">FAQ</span>
+          <h2 class="display text-[clamp(1.75rem,7vw,4.25rem)] text-[var(--color-ink-900)]">
             Pertanyaan yang
             <span class="serif-italic text-[var(--color-blue-600)]">paling sering</span>
             ditanya.
           </h2>
         </div>
-        <p class="md:col-span-5 max-w-md text-base leading-relaxed text-[var(--color-ink-600)]">
+        <p class="md:col-span-5 max-w-md text-sm leading-relaxed text-[var(--color-ink-600)] md:text-base">
           Kalau pertanyaanmu belum ada di sini, kamu bisa email
           <a href="mailto:hello@futureguide.id" class="text-[var(--color-blue-600)] underline-offset-4 hover:underline">hello@futureguide.id</a>
           dan tim kami akan balas di hari yang sama.
@@ -124,17 +124,17 @@ onUnmounted(() => ctx?.revert())
           <button
             type="button"
             @click="toggle(i)"
-            class="group flex w-full items-start justify-between gap-6 py-6 text-left transition-colors duration-300 md:py-8"
+            class="group flex w-full items-start justify-between gap-3 py-5 text-left transition-colors duration-300 sm:gap-6 sm:py-6 md:py-8"
             :aria-expanded="openIndex === i"
           >
-            <span class="flex items-start gap-5">
+            <span class="flex items-start gap-3 sm:gap-5">
               <span
-                class="mt-1 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-blue-600)]"
+                class="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue-600)] sm:text-[11px] sm:tracking-[0.22em]"
               >
                 / {{ String(i + 1).padStart(2, '0') }}
               </span>
               <span
-                class="text-lg font-medium tracking-tight text-[var(--color-ink-900)] md:text-2xl"
+                class="text-base font-medium tracking-tight text-[var(--color-ink-900)] sm:text-lg md:text-2xl"
               >
                 {{ item.q }}
               </span>
@@ -142,7 +142,7 @@ onUnmounted(() => ctx?.revert())
 
             <!-- Plus / Minus icon (morphs) -->
             <span
-              class="relative mt-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border hairline bg-[var(--color-paper)] transition-transform duration-500"
+              class="relative mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border hairline bg-[var(--color-paper)] transition-transform duration-500 sm:mt-1.5 sm:h-9 sm:w-9"
               :class="openIndex === i ? 'rotate-180 border-[var(--color-blue-500)] bg-[color-mix(in_oklab,_var(--color-blue-500)_8%,transparent)]' : ''"
               style="transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1)"
             >
@@ -165,9 +165,9 @@ onUnmounted(() => ctx?.revert())
               class="overflow-hidden"
               style="height: 0; opacity: 0;"
             >
-              <div class="grid gap-4 pb-8 md:grid-cols-12 md:gap-8">
-                <div class="md:col-span-2"></div>
-                <p class="md:col-span-9 max-w-[68ch] text-base leading-relaxed text-[var(--color-ink-600)] md:text-[17px]">
+              <div class="grid gap-4 pb-6 sm:pb-8 md:grid-cols-12 md:gap-8">
+                <div class="hidden md:col-span-2 md:block"></div>
+                <p class="md:col-span-9 max-w-[68ch] text-sm leading-relaxed text-[var(--color-ink-600)] sm:text-base md:text-[17px]">
                   {{ item.a }}
                 </p>
               </div>
@@ -176,7 +176,7 @@ onUnmounted(() => ctx?.revert())
         </div>
       </div>
 
-      <div class="mt-10 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink-500)]">
+      <div class="mt-8 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:mt-10 sm:text-[11px]">
         <span class="flex items-center gap-2">
           <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-blue-500)]"></span>
           Update terakhir Mei 2026
