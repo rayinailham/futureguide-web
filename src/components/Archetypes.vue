@@ -165,10 +165,10 @@ onUnmounted(() => ctx?.revert())
               v-for="arc in archetypes"
               :key="arc.id"
               data-arc-card
-              class="bezel relative flex w-[480px] shrink-0 flex-col h-full"
+              class="bezel relative flex w-[480px] shrink-0 flex-col"
             >
               <div
-                class="bezel-inner flex flex-col justify-between gap-8 p-10"
+                class="bezel-inner flex flex-col gap-8 p-10"
               >
                 <!-- Top: index + motif -->
                 <div class="flex items-start justify-between">
@@ -195,23 +195,23 @@ onUnmounted(() => ctx?.revert())
                   </span>
                 </div>
 
-                <!-- Description + footer -->
-                <div class="flex flex-col gap-5">
-                  <p class="text-base leading-relaxed text-[var(--color-ink-600)]">
-                    {{ arc.description }}
-                  </p>
-                  <div class="flex items-center justify-between border-t hairline pt-4">
-                    <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
-                      PMAI · {{ arc.id }} of 12
-                    </span>
-                    <span
-                      class="flex h-7 w-7 items-center justify-center rounded-full border hairline text-[var(--color-ink-700)]"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                        <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </span>
-                  </div>
+                <!-- Description -->
+                <p class="text-base leading-relaxed text-[var(--color-ink-600)]">
+                  {{ arc.description }}
+                </p>
+
+                <!-- Footer (pinned to bottom) -->
+                <div class="mt-auto flex items-center justify-between border-t hairline pt-4">
+                  <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)]">
+                    PMAI · {{ arc.id }} of 12
+                  </span>
+                  <span
+                    class="flex h-7 w-7 items-center justify-center rounded-full border hairline text-[var(--color-ink-700)]"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                      <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
                 </div>
               </div>
             </article>

@@ -167,16 +167,16 @@ const stats = [
     class="relative isolate overflow-hidden cursor-default"
     style="min-height: 100dvh"
   >
-    <!-- Layered textures (skewed grid + halftone + stripes + noise) -->
-    <div data-grid-tex class="skew-grid"></div>
-    <div data-halftone-tex class="halftone"></div>
-    <div data-stripes-tex class="stripes"></div>
-    <div class="noise"></div>
+    <!-- Layered textures (skewed grid + halftone + stripes + noise) — desktop only -->
+    <div data-grid-tex class="skew-grid hidden sm:block"></div>
+    <div data-halftone-tex class="halftone hidden sm:block"></div>
+    <div data-stripes-tex class="stripes hidden sm:block"></div>
+    <div class="noise hidden sm:block"></div>
 
-    <!-- Soft blue glow orbs -->
+    <!-- Soft blue glow orbs — desktop only -->
     <div
       data-orb
-      class="pointer-events-none absolute -left-32 top-24 h-[420px] w-[420px] rounded-full"
+      class="pointer-events-none absolute -left-32 top-24 h-[420px] w-[420px] rounded-full hidden sm:block"
       style="
         background: radial-gradient(
           closest-side,
@@ -188,7 +188,7 @@ const stats = [
     ></div>
     <div
       data-orb
-      class="pointer-events-none absolute right-[-10%] top-[55%] h-[520px] w-[520px] rounded-full"
+      class="pointer-events-none absolute right-[-10%] top-[55%] h-[520px] w-[520px] rounded-full hidden sm:block"
       style="
         background: radial-gradient(
           closest-side,
@@ -197,6 +197,12 @@ const stats = [
         );
         filter: blur(12px);
       "
+    ></div>
+
+    <!-- Mobile-only: minimal ambient accent (single soft radial, no textures) -->
+    <div
+      class="pointer-events-none absolute inset-0 sm:hidden"
+      style="background: radial-gradient(ellipse 80% 40% at 50% 0%, color-mix(in oklab, var(--color-blue-500) 6%, transparent), transparent 70%);"
     ></div>
 
     <!-- Content -->
@@ -220,6 +226,9 @@ const stats = [
         </span>
       </div>
 
+      <!-- Mobile-only: thin editorial separator -->
+      <div class="sm:hidden h-px w-full bg-[var(--color-ink-100)] -mt-2"></div>
+
       <!-- Headline (split lines, asymmetric editorial) -->
       <h1
         class="display max-w-[18ch] text-[clamp(2.25rem,9vw,7.5rem)] text-[var(--color-ink-900)]"
@@ -239,9 +248,19 @@ const stats = [
 
       <!-- Sub + CTA, split layout -->
       <div class="grid gap-6 sm:gap-8 md:grid-cols-12 md:gap-10">
+        <!-- Mobile: teks singkat -->
         <p
           data-sub
-          class="md:col-span-5 max-w-[42ch] text-balance text-sm leading-relaxed text-[var(--color-ink-600)] sm:text-base md:text-lg"
+          class="sm:hidden md:col-span-5 max-w-[42ch] text-balance text-sm leading-relaxed text-[var(--color-ink-600)]"
+        >
+          Tiga instrumen psikometri —
+          <span class="text-[var(--color-ink-900)]">RIASEC, OCEAN, VIA-IS</span>
+          — dianalisis dengan RAG. Bukan kuis kepribadian.
+        </p>
+        <!-- Desktop: teks penuh -->
+        <p
+          data-sub
+          class="hidden sm:block md:col-span-5 max-w-[42ch] text-balance text-sm leading-relaxed text-[var(--color-ink-600)] sm:text-base md:text-lg"
         >
           Tiga instrumen psikometri tervalidasi —
           <span class="text-[var(--color-ink-900)]">RIASEC, OCEAN, VIA-IS</span>
@@ -274,7 +293,7 @@ const stats = [
           </div>
 
           <!-- Stats meta -->
-          <ul class="grid w-full grid-cols-2 gap-px overflow-hidden rounded-2xl border hairline bg-[color-mix(in_oklab,_var(--color-ink-900)_5%,transparent)] sm:grid-cols-4 md:max-w-xl">
+          <ul class="grid w-full grid-cols-2 gap-px overflow-hidden rounded-xl sm:rounded-2xl border hairline bg-[color-mix(in_oklab,_var(--color-ink-900)_5%,transparent)] sm:grid-cols-4 md:max-w-xl">
             <li
               v-for="s in stats"
               :key="s.k"

@@ -57,10 +57,7 @@ function go(e: MouseEvent, href: string) {
         @click="(e: MouseEvent) => go(e, '#top')"
         class="group flex items-center gap-2 rounded-full px-3 py-1.5"
       >
-        <span class="relative flex h-6 w-6 items-center justify-center">
-          <span class="absolute inset-0 rounded-full bg-[var(--color-ink-900)]"></span>
-          <span class="relative h-2 w-2 rounded-full bg-[var(--color-blue-500)]"></span>
-        </span>
+        <img src="/logo-fg.png" alt="FutureGuide" class="h-6 w-6 object-contain" />
         <span class="font-medium tracking-tight text-[15px]">FutureGuide</span>
       </a>
 

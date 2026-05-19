@@ -53,10 +53,7 @@ const cols = [
       <div class="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 md:grid-cols-12 md:gap-10">
         <div class="col-span-2 md:col-span-5">
           <div class="flex items-center gap-3">
-            <span class="relative flex h-7 w-7 items-center justify-center">
-              <span class="absolute inset-0 rounded-full bg-[var(--color-ink-900)]"></span>
-              <span class="relative h-2.5 w-2.5 rounded-full bg-[var(--color-blue-500)]"></span>
-            </span>
+            <img src="/logo-fg.png" alt="FutureGuide" class="h-7 w-7 object-contain" />
             <span class="font-medium tracking-tight text-base">FutureGuide</span>
           </div>
           <p class="mt-4 max-w-sm text-sm leading-relaxed text-[var(--color-ink-600)] sm:mt-5">
