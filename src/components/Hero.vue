@@ -171,15 +171,15 @@ const stats = [
       <h1
         class="display max-w-[18ch] text-[clamp(3rem,9vw,7.5rem)] text-[var(--color-ink-900)]"
       >
-        <span class="block overflow-hidden">
+        <span class="block overflow-hidden pb-[0.15em]">
           <span data-line class="block">Pemetaan diri</span>
         </span>
-        <span class="block overflow-hidden">
+        <span class="block overflow-hidden pb-[0.15em]">
           <span data-line class="block">
             <span class="serif-italic text-[var(--color-blue-600)]">berbasis sains</span>,
           </span>
         </span>
-        <span class="block overflow-hidden">
+        <span class="block overflow-hidden pb-[0.15em]">
           <span data-line class="block">Not a guessing game!</span>
         </span>
       </h1>
