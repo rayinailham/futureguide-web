@@ -107,7 +107,7 @@ onMounted(() => {
 
   // Reduced motion: skip the show entirely after a brief beat
   if (reduced) {
-    window.setTimeout(finish, 350)
+    window.setTimeout(finish, 500)
     return
   }
 
@@ -172,7 +172,7 @@ onMounted(() => {
         cycleInterval = null
       }
       // Hold the last archetype briefly, then finish
-      window.setTimeout(finish, 300)
+      window.setTimeout(finish, 500)
     }
   }
 
