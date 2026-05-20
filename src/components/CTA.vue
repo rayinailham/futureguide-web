@@ -102,7 +102,7 @@ onUnmounted(() => ctx?.revert())
         </p>
         <div class="md:col-span-6 flex flex-col gap-3 md:items-end">
           <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 md:justify-end">
-            <a href="#pricing" class="btn-primary">
+            <a href="https://app.futureguide.id/auth" class="btn-primary">
               <span>Mulai dari Rp 200.000</span>
               <span class="btn-icon">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">

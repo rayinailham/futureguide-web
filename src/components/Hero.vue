@@ -223,7 +223,7 @@ const stats = [
           <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <a
               data-cta
-              href="#pricing"
+              href="https://app.futureguide.id/auth"
               class="btn-primary"
             >
               <span>Mulai Asesmen — Rp 200.000</span>

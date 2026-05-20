@@ -76,8 +76,7 @@ function go(e: MouseEvent, href: string) {
 
       <!-- CTA -->
       <a
-        href="#pricing"
-        @click="(e: MouseEvent) => go(e, '#pricing')"
+        href="https://app.futureguide.id/auth"
         class="btn-primary group ml-1 hidden md:inline-flex"
       >
         <span>Mulai Assessment</span>
@@ -143,8 +142,7 @@ function go(e: MouseEvent, href: string) {
         </ul>
         <div class="px-6 pt-8">
           <a
-            href="#pricing"
-            @click="(e: MouseEvent) => go(e, '#pricing')"
+            href="https://app.futureguide.id/auth"
             class="btn-primary w-full justify-between"
           >
             <span>Mulai Assessment</span>

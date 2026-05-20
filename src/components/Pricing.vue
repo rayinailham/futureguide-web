@@ -94,7 +94,7 @@ onUnmounted(() => ctx?.revert())
             </p>
 
             <a
-              href="#"
+              href="https://app.futureguide.id/auth"
               class="mt-5 flex items-center justify-between rounded-full border hairline px-3 py-2 text-xs transition-colors duration-300 hover:border-[var(--color-ink-900)] hover:bg-[var(--color-ink-900)] hover:text-[var(--color-paper)] sm:mt-7 sm:px-4 sm:py-2.5 sm:text-sm"
               :class="p.highlight ? 'bg-[var(--color-ink-900)] text-[var(--color-paper)] border-transparent' : 'text-[var(--color-ink-900)]'"
             >
