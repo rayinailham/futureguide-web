@@ -97,6 +97,7 @@ const funFacts = [
 
 <template>
   <section ref="root" id="results" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36">
+    <span class="section-marker">04 / Results</span>
     <div class="mx-auto max-w-[1320px]">
       <!-- Section header -->
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12">

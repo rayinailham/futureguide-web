@@ -76,30 +76,13 @@
 
 }
 
-/* Custom native scrollbar — unlayered so it wins over @layer base */
+/* Hide native scrollbar — top progress bar replaces it */
 html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-ink-600) var(--color-paper-alt);
+  scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-paper-alt);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-ink-600);
-  border-radius: 999px;
-  border: 2px solid var(--color-paper-alt);
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-blue-500);
-}
-::-webkit-scrollbar-corner {
-  background: var(--color-paper-alt);
+  display: none;
 }
 
 @layer components {
@@ -291,30 +274,180 @@ html {
     transform: translateY(0);
     filter: blur(0);
   }
+
+  /* Soft radial glow accent — used behind hero radar, pricing highlight */
+  .glow-accent {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 60% 55% at 50% 50%,
+      color-mix(in oklab, var(--color-blue-500) 14%, transparent) 0%,
+      transparent 70%
+    );
+    filter: blur(20px);
+  }
+
+  /* Slow drifting gradient orb — for hero & CTA ambient life */
+  .orb {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 9999px;
+    filter: blur(60px);
+    opacity: 0.55;
+    will-change: transform;
+    animation: orb-drift 18s ease-in-out infinite alternate;
+  }
+  .orb-blue {
+    background: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in oklab, var(--color-blue-400) 70%, transparent) 0%,
+      transparent 65%
+    );
+  }
+  .orb-cream {
+    background: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in oklab, var(--color-paper) 80%, transparent) 0%,
+      transparent 65%
+    );
+    opacity: 0.18;
+  }
+  @keyframes orb-drift {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(4%, -3%, 0) scale(1.08); }
+    100% { transform: translate3d(-3%, 5%, 0) scale(0.96); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orb { animation: none; }
+  }
+
+  /* Alternating section background — subtle paper-dim shift */
+  .section-alt {
+    background-color: var(--color-paper-dim);
+  }
+
+  /* Dark section inversion — for CTA pre-footer */
+  .section-dark {
+    background-color: var(--color-ink-900);
+    color: var(--color-paper);
+  }
+  .section-dark .pill {
+    background: color-mix(in oklab, #fff 6%, transparent);
+    border-color: color-mix(in oklab, #fff 12%, transparent);
+    color: color-mix(in oklab, var(--color-paper) 85%, transparent);
+  }
+  .section-dark .btn-primary {
+    background: var(--color-paper);
+    color: var(--color-ink-900);
+  }
+  .section-dark .btn-primary:hover {
+    background: var(--color-blue-400);
+    color: var(--color-ink-900);
+  }
+  .section-dark .btn-primary .btn-icon {
+    background: color-mix(in oklab, var(--color-ink-900) 12%, transparent);
+  }
+  .section-dark .btn-ghost {
+    border-color: color-mix(in oklab, #fff 18%, transparent);
+    color: var(--color-paper);
+  }
+  .section-dark .btn-ghost:hover {
+    background: color-mix(in oklab, #fff 6%, transparent);
+    border-color: color-mix(in oklab, #fff 30%, transparent);
+  }
+  .section-dark .hairline {
+    border-color: color-mix(in oklab, #fff 14%, transparent);
+  }
+
+  /* Section number marker — fixed left margin, desktop only */
+  .section-marker {
+    position: absolute;
+    left: 1.25rem;
+    top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-ink-400);
+    pointer-events: none;
+    z-index: 5;
+    display: none;
+  }
+  .section-marker::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--color-ink-300);
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    transform: translateY(-1px);
+  }
+  .section-dark .section-marker {
+    color: color-mix(in oklab, var(--color-paper) 50%, transparent);
+  }
+  .section-dark .section-marker::before {
+    background: color-mix(in oklab, #fff 22%, transparent);
+  }
+  @media (min-width: 1280px) {
+    .section-marker {
+      display: block;
+    }
+  }
+
+  /* Giant decorative quote glyph — Endorsement */
+  .quote-glyph {
+    position: absolute;
+    top: -8rem;
+    left: -4.5rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(14rem, 28vw, 26rem);
+    line-height: 0.8;
+    color: color-mix(in oklab, var(--color-ink-900) 4%, transparent);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
 }
 
-/* Custom progress scrollbar (top of page) */
-.scroll-progress {
+/* Custom scrollbar (right) */
+.custom-scrollbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: transparent;
+  top: 10%;
+  right: 12px;
+  height: 80%;
+  width: 4px;
+  background: color-mix(in srgb, var(--color-ink-600) 15%, transparent);
+  border-radius: 999px;
   z-index: 60;
-  pointer-events: none;
+  cursor: pointer;
 }
-.scroll-progress > span {
-  display: block;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(
-    90deg,
-    var(--color-blue-500),
-    var(--color-blue-300)
-  );
-  transform-origin: left;
-  transition: width 80ms linear;
+.custom-scrollbar__thumb {
+  position: absolute;
+  left: -4px;
+  width: 12px;
+  height: 48px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: var(--color-blue-500);
+  cursor: grab;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+.custom-scrollbar__thumb:hover {
+  background: var(--color-blue-300);
+  transform: translateY(-50%) scaleY(1.2);
+}
+.custom-scrollbar__thumb:active {
+  cursor: grabbing;
+  background: var(--color-blue-400);
+}
+
+@media (max-width: 768px) {
+  .custom-scrollbar {
+    display: none;
+  }
 }
 
 /* Horizontal scroll track

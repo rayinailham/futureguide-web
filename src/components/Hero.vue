@@ -156,6 +156,13 @@ const stats = [
     <div data-grid-tex class="skew-grid hidden sm:block"></div>
     <div data-halftone-tex class="halftone hidden sm:block"></div>
 
+    <!-- Ambient drifting orb — desktop only, top-right area -->
+    <div
+      class="orb orb-blue hidden lg:block"
+      style="top: 8%; right: -8%; width: 38rem; height: 38rem; opacity: 0.35;"
+      aria-hidden="true"
+    ></div>
+
     <!-- Content -->
     <div
       class="relative mx-auto flex max-w-[1320px] flex-col gap-6 px-5 pb-12 pt-24 sm:gap-8 sm:px-6 sm:pb-16 sm:pt-28 md:gap-12 md:pb-20 md:pt-32"
@@ -241,7 +248,12 @@ const stats = [
 
         <!-- RIGHT: stacked radar cards + tagline + stats -->
         <div class="relative flex flex-col gap-6 sm:gap-8 lg:col-span-5">
-          <StackedRadarCards />
+          <!-- Soft glow behind radar cards -->
+          <div class="glow-accent hidden lg:block" style="inset: -10% -15% 30% -15%;" aria-hidden="true"></div>
+
+          <div class="relative">
+            <StackedRadarCards />
+          </div>
 
           <p
             data-cta

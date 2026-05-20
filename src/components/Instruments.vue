@@ -51,8 +51,9 @@ onUnmounted(() => ctx?.revert())
   <section
     ref="root"
     id="instruments"
-    class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36"
+    class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36 section-alt"
   >
+    <span class="section-marker">02 / Instruments</span>
     <!-- Subtle texture only at the section seam -->
     <div
       class="pointer-events-none absolute inset-x-0 top-0 h-32"

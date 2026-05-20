@@ -48,7 +48,7 @@ function go(e: MouseEvent, href: string) {
     style="transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1)"
   >
     <nav
-      class="relative flex items-center gap-2 rounded-full border border-[color-mix(in_oklab,_var(--color-ink-900)_8%,transparent)] bg-[color-mix(in_oklab,_var(--color-paper)_85%,transparent)] px-2 py-2 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(11,12,15,0.12)] transition-all duration-700"
+      class="relative flex items-center gap-2 rounded-full border border-[color-mix(in_oklab,_var(--color-ink-900)_8%,transparent)] bg-[color-mix(in_oklab,_var(--color-paper)_85%,transparent)] px-2 py-2 backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(11,12,15,0.12)] transition-all duration-700"
       style="transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1)"
     >
       <!-- Brand -->

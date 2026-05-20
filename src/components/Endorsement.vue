@@ -46,16 +46,21 @@ onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
-  <section ref="root" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36">
-    <div class="mx-auto max-w-[1320px]">
-      <div class="mb-10 flex items-center justify-between md:mb-14">
+  <section ref="root" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36 overflow-hidden">
+    <div class="mx-auto max-w-[1320px] relative">
+      <!-- Giant decorative quote glyph -->
+      <span class="quote-glyph hidden md:block" aria-hidden="true">&ldquo;</span>
+
+      <span class="section-marker">01 / Endorsement</span>
+
+      <div class="mb-10 flex items-center justify-between md:mb-14 relative">
         <span class="pill">Endorsement Akademis</span>
         <span class="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink-500)] md:inline">
           UNJ — Bimbingan & Konseling
         </span>
       </div>
 
-      <div class="grid gap-8 sm:gap-12 md:grid-cols-12 md:gap-16">
+      <div class="grid gap-8 sm:gap-12 md:grid-cols-12 md:gap-16 relative">
         <!-- Quote -->
         <div class="md:col-span-8">
           <h2

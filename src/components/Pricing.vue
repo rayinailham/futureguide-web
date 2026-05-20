@@ -33,6 +33,7 @@ onUnmounted(() => ctx?.revert())
 
 <template>
   <section ref="root" id="pricing" class="relative px-5 py-16 sm:px-6 sm:py-20 md:py-36">
+    <span class="section-marker">05 / Pricing</span>
     <div class="mx-auto max-w-[1320px]">
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12 md:items-end">
         <div class="md:col-span-7">
@@ -53,8 +54,9 @@ onUnmounted(() => ctx?.revert())
           v-for="p in pricing"
           :key="p.name"
           data-price-card
-          class="bezel"
-          :class="p.highlight ? 'md:-translate-y-3' : ''"
+          class="bezel relative transition-transform duration-500"
+          :class="p.highlight ? 'md:-translate-y-6 md:scale-[1.03]' : ''"
+          :style="p.highlight ? 'filter: drop-shadow(0 24px 60px color-mix(in oklab, var(--color-blue-500) 22%, transparent));' : ''"
         >
           <div
             class="bezel-inner relative flex h-full flex-col overflow-hidden p-4 sm:p-6 md:p-8"
