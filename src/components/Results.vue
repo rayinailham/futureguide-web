@@ -92,6 +92,10 @@ const funFacts = [
     fact: '85% pelajar Indonesia memilih jurusan kuliah tanpa pernah ikut asesmen psikometri formal — lebih banyak pakai feeling dan tren.',
     tag: 'Realita',
   },
+  {
+    fact: 'Conscientiousness adalah trait OCEAN dengan korelasi terkuat ke performa kerja lintas industri (Barrick & Mount 1991, meta-analisis 117 studi).',
+    tag: 'Performance',
+  },
 ]
 </script>
 
@@ -229,30 +233,38 @@ const funFacts = [
           </div>
         </article>
 
-        <article data-rag-card class="bezel col-span-2 md:col-span-5">
+        <article data-rag-card class="bezel col-span-2 md:col-span-12">
           <div class="bezel-inner relative h-full overflow-hidden p-5 sm:p-7 md:p-10">
-            <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
-              Fun Facts
-            </span>
-            <h3 class="display mt-3 text-2xl text-[var(--color-ink-900)] sm:mt-4 sm:text-3xl md:text-4xl">
-              Yang
-              <span class="serif-italic text-[var(--color-blue-600)]">jarang diceritakan</span>
-              tentang pemetaan karier.
-            </h3>
+            <div class="grid gap-5 sm:gap-7 md:grid-cols-12 md:items-end">
+              <div class="md:col-span-7">
+                <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-ink-500)] sm:text-[10px] sm:tracking-[0.22em]">
+                  Fun Facts
+                </span>
+                <h3 class="display mt-3 text-2xl text-[var(--color-ink-900)] sm:mt-4 sm:text-3xl md:text-4xl">
+                  Yang
+                  <span class="serif-italic text-[var(--color-blue-600)]">jarang diceritakan</span>
+                  tentang pemetaan karier.
+                </h3>
+              </div>
+              <p class="md:col-span-5 max-w-md text-[12px] leading-relaxed text-[var(--color-ink-500)] sm:text-[13px] md:text-sm">
+                Enam temuan riset yang biasanya hanya muncul di jurnal akademis —
+                disaring jadi konteks praktis sebelum kamu ambil keputusan karier.
+              </p>
+            </div>
 
-            <ul class="mt-5 space-y-3 sm:mt-7 sm:space-y-4">
+            <ul class="mt-6 grid gap-3 sm:mt-8 sm:gap-4 md:grid-cols-3">
               <li
                 v-for="(item, i) in funFacts"
                 :key="i"
-                class="group relative border-t hairline pt-3 first:border-t-0 first:pt-0 sm:pt-4"
+                class="group relative rounded-2xl border hairline bg-[var(--color-paper)] p-4 transition-colors duration-300 hover:border-[color-mix(in_oklab,_var(--color-blue-500)_30%,transparent)] sm:p-5"
               >
-                <div class="mb-1.5 flex items-center gap-2 sm:mb-2 sm:gap-3">
+                <div class="mb-2 flex items-center gap-2 sm:mb-3 sm:gap-3">
                   <span
                     class="flex h-5 items-center rounded-full border hairline bg-[color-mix(in_oklab,_var(--color-blue-500)_8%,transparent)] px-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--color-blue-700)] sm:h-6 sm:px-2.5 sm:text-[10px] sm:tracking-[0.18em]"
                   >
                     {{ item.tag }}
                   </span>
-                  <span class="font-mono text-[10px] text-[var(--color-ink-400)]">
+                  <span class="ml-auto font-mono text-[10px] text-[var(--color-ink-400)]">
                     0{{ i + 1 }} / 0{{ funFacts.length }}
                   </span>
                 </div>

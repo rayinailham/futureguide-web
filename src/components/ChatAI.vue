@@ -94,11 +94,25 @@ onUnmounted(() => {
   <section
     ref="root"
     id="chat"
-    class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36"
+    class="relative isolate overflow-hidden px-5 py-16 sm:px-6 sm:py-24 md:py-36"
   >
+    <!-- Ambient textures -->
+    <div class="skew-grid hidden sm:block" aria-hidden="true"></div>
+    <div class="halftone hidden sm:block" aria-hidden="true"></div>
+    <div
+      class="orb orb-blue hidden lg:block"
+      style="top: 12%; left: -10%; width: 32rem; height: 32rem; opacity: 0.32;"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="orb orb-cream hidden lg:block"
+      style="bottom: -8%; right: -8%; width: 30rem; height: 30rem; opacity: 0.4; animation-delay: -8s;"
+      aria-hidden="true"
+    ></div>
+
     <span class="section-marker">05 / Chat AI</span>
 
-    <div class="mx-auto max-w-[1320px]">
+    <div class="relative mx-auto max-w-[1320px]">
       <!-- Header -->
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12">
         <div class="md:col-span-7">
