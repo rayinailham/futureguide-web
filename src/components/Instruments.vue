@@ -54,23 +54,31 @@ onUnmounted(() => ctx?.revert())
     class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36 section-alt overflow-hidden"
   >
     <span class="section-marker">02 / Instruments</span>
-    <!-- Subtle texture only at the section seam -->
-    <div
-      class="pointer-events-none absolute inset-x-0 top-0 h-32"
-      style="
-        background-image: linear-gradient(
-          to bottom,
-          color-mix(in oklab, var(--color-blue-500) 5%, transparent),
-          transparent
-        );
-      "
-    ></div>
 
-    <!-- Texture: blueprint grid + plus marks (analytical/data feel) -->
-    <div data-tex-drift class="blueprint-grid tex-drift hidden sm:block" aria-hidden="true"></div>
-    <div data-tex-drift class="plus-marks tex-drift hidden md:block" aria-hidden="true"></div>
+    <!-- Ambient background system (textural, no blobs) -->
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <!-- Top seam fade -->
+      <div
+        class="absolute inset-x-0 top-0 h-32"
+        style="
+          background-image: linear-gradient(
+            to bottom,
+            color-mix(in oklab, var(--color-blue-500) 5%, transparent),
+            transparent
+          );
+        "
+      ></div>
+      <!-- Blueprint grid — schematic / data feel -->
+      <div data-tex-drift class="blueprint-grid tex-drift hidden sm:block" style="opacity: 0.45;"></div>
+      <!-- Plus marks accent -->
+      <div data-tex-drift class="plus-marks tex-drift hidden md:block" style="opacity: 0.35;"></div>
+      <!-- Topographic contour for depth -->
+      <div data-tex-drift class="contour tex-drift hidden lg:block" style="opacity: 0.4;"></div>
+      <!-- Film grain -->
+      <div class="noise" style="opacity: 0.035;"></div>
+    </div>
 
-    <div class="mx-auto max-w-[1320px]">
+    <div class="relative mx-auto max-w-[1320px]">
       <div class="mb-10 flex flex-col items-start justify-between gap-5 sm:gap-6 md:mb-14 md:flex-row md:items-end">
         <div class="max-w-2xl">
           <span class="pill mb-4 inline-flex md:mb-6">Tiga Instrumen, 200 Pertanyaan</span>

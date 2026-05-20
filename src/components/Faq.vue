@@ -98,9 +98,19 @@ onUnmounted(() => ctx?.revert())
 <template>
   <section ref="root" id="faq" class="relative overflow-hidden px-5 py-16 sm:px-6 sm:py-24 md:py-36" style="background-color: color-mix(in oklab, var(--color-paper-dim) 50%, var(--color-paper));">
     <span class="section-marker">07 / FAQ</span>
-    <!-- Texture: dot grid + halftone (editorial Q&A feel) -->
-    <div data-tex-drift class="dot-grid tex-drift hidden sm:block" aria-hidden="true"></div>
-    <div data-tex-drift class="halftone tex-drift hidden md:block" style="opacity: 0.25;" aria-hidden="true"></div>
+
+    <!-- Ambient background system (textural, no blobs) -->
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <!-- Crosshatch — analytical Q&A texture -->
+      <div data-tex-drift class="crosshatch tex-drift hidden sm:block" style="opacity: 0.4;"></div>
+      <!-- Dot grid — editorial accent -->
+      <div data-tex-drift class="dot-grid tex-drift hidden md:block" style="opacity: 0.4;"></div>
+      <!-- Halftone bloom in upper right -->
+      <div data-tex-drift class="halftone tex-drift hidden lg:block" style="opacity: 0.22;"></div>
+      <!-- Film grain -->
+      <div class="noise" style="opacity: 0.04;"></div>
+    </div>
+
     <div class="relative mx-auto max-w-[1320px]">
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12 md:items-end">
         <div class="md:col-span-7">

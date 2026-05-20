@@ -100,9 +100,31 @@ const funFacts = [
 </script>
 
 <template>
-  <section ref="root" id="results" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36">
+  <section ref="root" id="results" class="relative overflow-hidden px-5 py-16 sm:px-6 sm:py-24 md:py-36">
     <span class="section-marker">04 / Results</span>
-    <div class="mx-auto max-w-[1320px]">
+
+    <!-- Ambient background system (textural, no blobs) -->
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <!-- Soft top-edge gradient seam -->
+      <div
+        class="absolute inset-x-0 top-0 h-40"
+        style="
+          background-image: linear-gradient(
+            to bottom,
+            color-mix(in oklab, var(--color-blue-500) 5%, transparent),
+            transparent
+          );
+        "
+      ></div>
+      <!-- Topographic contour rings — feels like a map of insight -->
+      <div data-tex-drift class="contour tex-drift hidden sm:block" style="opacity: 0.5;"></div>
+      <!-- Wavy horizontal bands — adds rhythm -->
+      <div data-tex-drift class="wave-bands tex-drift hidden md:block" style="opacity: 0.3;"></div>
+      <!-- Subtle film grain for paper-like texture -->
+      <div class="noise" style="opacity: 0.035;"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-[1320px]">
       <!-- Section header -->
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12">
         <div class="md:col-span-7">
