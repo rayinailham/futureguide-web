@@ -42,6 +42,13 @@ function getResponsiveStack() {
   return { spread: 56, rotation: 7 }
 }
 
+function shouldDeferForIntro(): boolean {
+  if (typeof window === 'undefined') return false
+  const seen = sessionStorage.getItem('fg-intro-seen') === '1'
+  const hasHash = window.location.hash && window.location.hash !== '#top'
+  return !seen && !hasHash
+}
+
 onMounted(() => {
   computeRadarSize()
   if (typeof window !== 'undefined') {
@@ -59,28 +66,52 @@ onMounted(() => {
   }
 
   if (!root.value) return
-  ctx = gsap.context(() => {
-    const { spread, rotation } = getResponsiveStack()
-    const cards = gsap.utils.toArray<HTMLElement>('[data-stack-card]')
-    cards.forEach((card, i) => {
-      const x = i === 0 ? 0 : i === 1 ? -spread : spread
-      const rot = i === 0 ? 0 : i === 1 ? -rotation : rotation
-      gsap.fromTo(
-        card,
-        { x: 0, y: 32, rotate: 0, opacity: 0, scale: 0.92 },
-        {
-          x,
-          y: 0,
-          rotate: rot,
-          opacity: 1,
-          scale: 1,
-          duration: 1.4,
-          ease: 'expo.out',
-          delay: 0.55 + i * 0.12,
-        },
-      )
-    })
-  }, root.value)
+
+  // Pre-hide cards so they don't pop in before the curtain opens
+  const cards = Array.from(root.value.querySelectorAll<HTMLElement>('[data-stack-card]'))
+  if (shouldDeferForIntro()) {
+    gsap.set(cards, { opacity: 0 })
+  }
+
+  const runEntry = () => {
+    if (!root.value) return
+    ctx = gsap.context(() => {
+      const { spread, rotation } = getResponsiveStack()
+      const cardEls = gsap.utils.toArray<HTMLElement>('[data-stack-card]')
+      cardEls.forEach((card, i) => {
+        const x = i === 0 ? 0 : i === 1 ? -spread : spread
+        const rot = i === 0 ? 0 : i === 1 ? -rotation : rotation
+        gsap.fromTo(
+          card,
+          { x: 0, y: 32, rotate: 0, opacity: 0, scale: 0.92 },
+          {
+            x,
+            y: 0,
+            rotate: rot,
+            opacity: 1,
+            scale: 1,
+            duration: 1.4,
+            ease: 'expo.out',
+            delay: 0.55 + i * 0.12,
+          },
+        )
+      })
+    }, root.value)
+  }
+
+  if (shouldDeferForIntro()) {
+    const onIntroFinished = () => {
+      window.removeEventListener('fg:intro-finished', onIntroFinished)
+      runEntry()
+    }
+    window.addEventListener('fg:intro-finished', onIntroFinished)
+    window.setTimeout(() => {
+      window.removeEventListener('fg:intro-finished', onIntroFinished)
+      if (!ctx) runEntry()
+    }, 6000)
+  } else {
+    runEntry()
+  }
 })
 
 onUnmounted(() => {
