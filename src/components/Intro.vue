@@ -80,6 +80,17 @@ function finish() {
       { yPercent: 101, duration: 1.05, ease: 'expo.inOut' },
       0.15,
     )
+    // Fire hero entry the instant curtain starts opening, so hero animates
+    // during the reveal instead of after a noticeable gap.
+    out.call(
+      () => {
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('fg:intro-finished'))
+        }
+      },
+      [],
+      0.15,
+    )
   }
   if (root.value) {
     out.to(root.value, { opacity: 0, duration: 0.2, ease: 'power2.out' }, '>-0.1')
