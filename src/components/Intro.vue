@@ -172,7 +172,7 @@ onMounted(() => {
         cycleInterval = null
       }
       // Hold the last archetype briefly, then finish
-      window.setTimeout(finish, 520)
+      window.setTimeout(finish, 300)
     }
   }
 
