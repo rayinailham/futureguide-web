@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { useLenis } from './composables/useLenis'
+import { useLenis, getLenis } from './composables/useLenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Intro from './components/Intro.vue'
 import Navbar from './components/Navbar.vue'
 import Hero from './components/Hero.vue'
 import Endorsement from './components/Endorsement.vue'
@@ -17,6 +18,28 @@ import Footer from './components/Footer.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 useLenis()
+
+const showIntro = ref(true)
+
+if (typeof window !== 'undefined') {
+  // Skip intro on internal hash navigation or if already shown this session
+  const seen = sessionStorage.getItem('fg-intro-seen') === '1'
+  const hasHash = window.location.hash && window.location.hash !== '#top'
+  if (seen || hasHash) showIntro.value = false
+  else {
+    // Stop Lenis until intro finishes so it doesn't try to scroll background
+    queueMicrotask(() => getLenis()?.stop())
+  }
+}
+
+function onIntroFinished() {
+  showIntro.value = false
+  sessionStorage.setItem('fg-intro-seen', '1')
+  // Resume scroll engine and trigger any waiting reveals
+  const lenis = getLenis()
+  lenis?.start()
+  ScrollTrigger.refresh()
+}
 
 const progress = ref(0)
 const thumbTop = ref(0)
@@ -131,6 +154,9 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <!-- Initial intro overlay (12 archetypes cycling, then curtain split) -->
+  <Intro v-if="showIntro" @finished="onIntroFinished" />
+
   <!-- Custom scrollbar (right) -->
   <div
     ref="trackEl"
