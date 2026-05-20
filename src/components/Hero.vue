@@ -20,9 +20,31 @@ const root = ref<HTMLElement | null>(null)
 let ctx: gsap.Context | null = null
 let cleanupMouse: (() => void) | null = null
 
+function shouldDeferForIntro(): boolean {
+  if (typeof window === 'undefined') return false
+  const seen = sessionStorage.getItem('fg-intro-seen') === '1'
+  const hasHash = window.location.hash && window.location.hash !== '#top'
+  return !seen && !hasHash
+}
+
 onMounted(() => {
   if (!root.value) return
-  ctx = gsap.context(() => {
+
+  // Pre-hide animated elements so the curtain doesn't reveal a finished hero.
+  // We use opacity:0 (not visibility) so layout is unchanged.
+  const lineEls0 = Array.from(root.value.querySelectorAll<HTMLElement>('[data-line]'))
+  const otherEls = Array.from(
+    root.value.querySelectorAll<HTMLElement>('[data-eyebrow], [data-sub], [data-cta], [data-meta]'),
+  )
+  const allInitial = [...lineEls0, ...otherEls]
+
+  if (shouldDeferForIntro()) {
+    gsap.set(allInitial, { opacity: 0 })
+  }
+
+  const runEntry = () => {
+    if (!root.value) return
+    ctx = gsap.context(() => {
     // Headline split: each line wrapper masks
     const lines = gsap.utils.toArray<HTMLElement>('[data-line]')
     gsap.fromTo(
@@ -92,6 +114,22 @@ onMounted(() => {
       },
     })
   }, root.value)
+  }
+
+  if (shouldDeferForIntro()) {
+    const onIntroFinished = () => {
+      window.removeEventListener('fg:intro-finished', onIntroFinished)
+      runEntry()
+    }
+    window.addEventListener('fg:intro-finished', onIntroFinished)
+    // Safety: if event never fires within 6s, run anyway
+    window.setTimeout(() => {
+      window.removeEventListener('fg:intro-finished', onIntroFinished)
+      if (!ctx) runEntry()
+    }, 6000)
+  } else {
+    runEntry()
+  }
 
   // Mouse parallax: each headline line drifts at a different depth
   const section = root.value

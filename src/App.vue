@@ -39,6 +39,8 @@ function onIntroFinished() {
   const lenis = getLenis()
   lenis?.start()
   ScrollTrigger.refresh()
+  // Notify gated entry animations (Hero) to play
+  window.dispatchEvent(new CustomEvent('fg:intro-finished'))
 }
 
 const progress = ref(0)
