@@ -290,26 +290,30 @@ onBeforeUnmount(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.75rem;
-  padding: 1.5rem;
+  gap: clamp(1rem, 3.5vh, 1.75rem);
+  padding: 1.25rem;
   pointer-events: none;
 }
 
 .intro-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
   background: color-mix(in oklab, var(--color-paper) 70%, transparent);
   border: 1px solid color-mix(in oklab, var(--color-ink-900) 8%, transparent);
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-size: clamp(9px, 2.4vw, 10px);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-ink-700);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  max-width: calc(100vw - 2.5rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .intro-eyebrow__pulse {
   position: relative;
@@ -337,8 +341,10 @@ onBeforeUnmount(() => {
   position: relative;
   display: grid;
   place-items: center;
-  width: clamp(200px, 28vw, 320px);
-  height: clamp(200px, 28vw, 320px);
+  width: clamp(160px, 38vw, 320px);
+  height: clamp(160px, 38vw, 320px);
+  max-width: 60vmin;
+  max-height: 60vmin;
 }
 .intro-ring {
   position: absolute;
@@ -364,7 +370,7 @@ onBeforeUnmount(() => {
 
 .intro-motif {
   font-family: var(--font-serif);
-  font-size: clamp(7rem, 16vw, 11rem);
+  font-size: clamp(5rem, 22vmin, 11rem);
   line-height: 1;
   color: var(--color-ink-900);
   display: inline-block;
@@ -412,7 +418,7 @@ onBeforeUnmount(() => {
 
 .intro-skip {
   position: absolute;
-  bottom: max(env(safe-area-inset-bottom, 0px), 1.5rem);
+  bottom: max(env(safe-area-inset-bottom, 0px), 1.25rem);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -447,6 +453,35 @@ onBeforeUnmount(() => {
   .intro-ring::after,
   .intro-eyebrow__dot {
     animation: none;
+  }
+}
+
+/* Short viewports (landscape phones) — hide skip hint to avoid collision */
+@media (max-height: 500px) {
+  .intro-skip {
+    display: none;
+  }
+  .intro-stage {
+    gap: 0.85rem;
+    padding: 0.75rem;
+  }
+  .intro-motif-wrap {
+    width: clamp(120px, 28vh, 200px);
+    height: clamp(120px, 28vh, 200px);
+  }
+  .intro-motif {
+    font-size: clamp(4rem, 16vh, 7rem);
+  }
+}
+
+/* Very narrow phones — tighten name + tagline */
+@media (max-width: 380px) {
+  .intro-name {
+    font-size: clamp(1.1rem, 5.5vw, 1.4rem);
+  }
+  .intro-tagline {
+    font-size: 10px;
+    letter-spacing: 0.18em;
   }
 }
 </style>
