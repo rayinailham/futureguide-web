@@ -33,7 +33,7 @@ onUnmounted(() => ctx?.revert())
 
 <template>
   <section ref="root" id="pricing" class="relative px-5 py-16 sm:px-6 sm:py-20 md:py-36">
-    <span class="section-marker">05 / Pricing</span>
+    <span class="section-marker">06 / Pricing</span>
     <div class="mx-auto max-w-[1320px]">
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12 md:items-end">
         <div class="md:col-span-7">

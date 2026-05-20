@@ -197,63 +197,6 @@ const funFacts = [
           </div>
         </article>
 
-        <article data-rag-card class="bezel md:col-span-7">
-          <div class="bezel-inner relative h-full overflow-hidden p-4 sm:p-7 md:p-10">
-            <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-ink-500)] sm:tracking-[0.22em] md:text-[10px]">
-              Chat AI
-            </span>
-            <h3 class="display mt-2.5 text-xl text-[var(--color-ink-900)] sm:mt-4 sm:text-3xl md:max-w-md md:text-4xl">
-              Diskusi yang tahu konteks
-              <span class="serif-italic text-[var(--color-blue-600)]">profilmu</span>.
-            </h3>
-
-            <p class="mt-2 text-[12px] leading-relaxed text-[var(--color-ink-600)] sm:hidden">
-              Tanya-jawab pasca asesmen, grounded ke 121 jurnal &amp; hasil pribadimu.
-            </p>
-
-            <!-- Mini chat preview (md+ only — busy on small screens) -->
-            <div class="mt-7 hidden gap-3 sm:grid md:max-w-xl">
-              <div
-                class="ml-auto max-w-[88%] rounded-2xl rounded-br-sm bg-[var(--color-ink-900)] px-4 py-3 text-sm text-[var(--color-paper)]"
-              >
-                Kalau aku Investigative + Openness tinggi, prospek di research role
-                gimana?
-              </div>
-              <div
-                class="max-w-[92%] rounded-2xl rounded-bl-sm border hairline bg-[color-mix(in_oklab,_var(--color-blue-500)_3%,transparent)] px-4 py-3 text-sm text-[var(--color-ink-800)]"
-              >
-                <span class="font-medium text-[var(--color-ink-900)]">FutureGuide AI · </span>
-                Profil ini cocok untuk peran research analyst & R&D engineer.
-                Berdasarkan studi McCrae & Costa 1997, Openness tinggi memprediksi
-                ketahanan pada pekerjaan eksploratif yang ambigu.
-                <div class="mt-2 flex flex-wrap gap-1.5">
-                  <span class="rounded-full border hairline px-2 py-0.5 font-mono text-[10px] text-[var(--color-ink-500)]">
-                    ref: McCrae 1997
-                  </span>
-                  <span class="rounded-full border hairline px-2 py-0.5 font-mono text-[10px] text-[var(--color-ink-500)]">
-                    ref: Holland 1997
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile-only mini bubble teaser -->
-            <div class="mt-3 flex flex-wrap gap-1.5 sm:hidden">
-              <span class="rounded-full border hairline px-2 py-0.5 font-mono text-[10px] text-[var(--color-ink-500)]">
-                SSE streaming
-              </span>
-              <span class="rounded-full border hairline px-2 py-0.5 font-mono text-[10px] text-[var(--color-ink-500)]">
-                ref-grounded
-              </span>
-            </div>
-
-            <p class="mt-7 hidden text-xs leading-relaxed text-[var(--color-ink-500)] sm:block md:max-w-md">
-              SSE streaming · 1 sesi chat per assessment · grounded ke 121 jurnal
-              dan hasil pribadimu.
-            </p>
-          </div>
-        </article>
-
         <!-- Flow + tech (full-width on mobile, span both cols) -->
         <article data-rag-card class="bezel col-span-2 md:col-span-7">
           <div class="bezel-inner relative h-full overflow-hidden p-5 sm:p-7 md:p-10">

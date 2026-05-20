@@ -9,6 +9,7 @@ const links = [
   { href: '#instruments', label: 'Instrumen' },
   { href: '#archetypes', label: 'Archetype' },
   { href: '#results', label: 'Hasil' },
+  { href: '#chat', label: 'Chat AI' },
   { href: '#pricing', label: 'Token' },
   { href: '#faq', label: 'FAQ' },
 ]

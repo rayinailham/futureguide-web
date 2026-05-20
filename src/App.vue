@@ -9,6 +9,7 @@ import Endorsement from './components/Endorsement.vue'
 import Instruments from './components/Instruments.vue'
 import Archetypes from './components/Archetypes.vue'
 import Results from './components/Results.vue'
+import ChatAI from './components/ChatAI.vue'
 import Pricing from './components/Pricing.vue'
 import Faq from './components/Faq.vue'
 import CTA from './components/CTA.vue'
@@ -127,6 +128,7 @@ onUnmounted(() => {
     <Instruments />
     <Archetypes />
     <Results />
+    <ChatAI />
     <Pricing />
     <Faq />
     <CTA />
