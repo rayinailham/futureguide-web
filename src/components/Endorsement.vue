@@ -47,6 +47,10 @@ onUnmounted(() => ctx?.revert())
 
 <template>
   <section ref="root" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36 overflow-hidden">
+    <!-- Texture: contour rings + dot grid -->
+    <div data-tex-drift class="contour tex-drift hidden sm:block" aria-hidden="true"></div>
+    <div data-tex-drift class="dot-grid tex-drift hidden sm:block" aria-hidden="true"></div>
+
     <div class="mx-auto max-w-[1320px] relative">
       <!-- Giant decorative quote glyph -->
       <span class="quote-glyph hidden md:block" aria-hidden="true">&ldquo;</span>

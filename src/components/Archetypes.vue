@@ -73,10 +73,14 @@ onUnmounted(() => ctx?.revert())
   <section
     ref="root"
     id="archetypes"
-    class="relative bg-[var(--color-paper)]"
+    class="relative overflow-hidden bg-[var(--color-paper)]"
   >
+    <!-- Texture: crosshatch + wave bands (12-archetype constellation feel) -->
+    <div data-tex-drift class="crosshatch tex-drift hidden sm:block" aria-hidden="true"></div>
+    <div data-tex-drift class="wave-bands tex-drift hidden md:block" aria-hidden="true"></div>
+
     <!-- Mobile layout: compact grid, no pin/horizontal-scroll -->
-    <div class="px-5 py-16 md:hidden">
+    <div class="relative px-5 py-16 md:hidden">
       <div class="mx-auto max-w-[1320px]">
         <div class="mb-8">
           <span class="pill mb-3 inline-flex">12 Archetype PMAI</span>

@@ -32,9 +32,12 @@ onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
-  <section ref="root" id="pricing" class="relative px-5 py-16 sm:px-6 sm:py-20 md:py-36">
+  <section ref="root" id="pricing" class="relative overflow-hidden px-5 py-16 sm:px-6 sm:py-20 md:py-36">
     <span class="section-marker">06 / Pricing</span>
-    <div class="mx-auto max-w-[1320px]">
+    <!-- Texture: stripes + soft glow accent -->
+    <div data-tex-drift class="stripes tex-drift hidden sm:block" aria-hidden="true"></div>
+    <div class="glow-accent hidden md:block" style="inset: 30% -20% 30% -20%; opacity: 0.5;" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-[1320px]">
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12 md:items-end">
         <div class="md:col-span-7">
           <span class="pill mb-4 inline-flex md:mb-6">Token Assessment</span>

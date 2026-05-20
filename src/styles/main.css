@@ -169,6 +169,122 @@ html {
     opacity: 0.6;
   }
 
+  /* Dotted grid — softer than skew-grid; pairs well with editorial sections */
+  .dot-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-ink-900) 14%, transparent) 1px,
+      transparent 1.5px
+    );
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 75%);
+    opacity: 0.55;
+  }
+
+  /* Crosshatch — fine intersecting diagonals; analytical/data feel */
+  .crosshatch {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(45deg,
+        color-mix(in oklab, var(--color-ink-900) 8%, transparent) 0 1px,
+        transparent 1px 9px),
+      repeating-linear-gradient(-45deg,
+        color-mix(in oklab, var(--color-ink-900) 8%, transparent) 0 1px,
+        transparent 1px 9px);
+    mask-image: linear-gradient(to bottom right, #000, transparent 75%);
+    -webkit-mask-image: linear-gradient(to bottom right, #000, transparent 75%);
+    opacity: 0.45;
+  }
+
+  /* Topographic contour rings — feels like a map */
+  .contour {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 65% 50% at 30% 50%,
+        transparent 0,
+        color-mix(in oklab, var(--color-blue-500) 10%, transparent) 14%,
+        transparent 16%,
+        color-mix(in oklab, var(--color-blue-500) 8%, transparent) 28%,
+        transparent 30%,
+        color-mix(in oklab, var(--color-blue-500) 6%, transparent) 44%,
+        transparent 46%,
+        color-mix(in oklab, var(--color-blue-500) 5%, transparent) 60%,
+        transparent 62%);
+    mask-image: linear-gradient(to right, #000, transparent 80%);
+    -webkit-mask-image: linear-gradient(to right, #000, transparent 80%);
+    opacity: 0.65;
+  }
+
+  /* Blueprint grid — small precise grid, schematic feel */
+  .blueprint-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right,
+        color-mix(in oklab, var(--color-ink-900) 6%, transparent) 1px,
+        transparent 1px),
+      linear-gradient(to bottom,
+        color-mix(in oklab, var(--color-ink-900) 6%, transparent) 1px,
+        transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 80% 70% at 70% 50%, #000 0%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 50%, #000 0%, transparent 80%);
+    opacity: 0.55;
+  }
+
+  /* Wavy contour bands — soft horizontal flow lines */
+  .wave-bands {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent 0 22px,
+      color-mix(in oklab, var(--color-blue-500) 9%, transparent) 22px 23px,
+      transparent 23px 46px,
+      color-mix(in oklab, var(--color-blue-500) 5%, transparent) 46px 47px
+    );
+    mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, #000, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, #000, transparent 70%);
+    opacity: 0.5;
+    transform: skewY(-2deg);
+  }
+
+  /* Plus marks — engineering / blueprint accent */
+  .plus-marks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--color-ink-900) 16%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklab, var(--color-ink-900) 16%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px, 48px 48px;
+    background-position: center;
+    mask-image:
+      radial-gradient(circle 5px at center, #000 100%, transparent 100%),
+      radial-gradient(ellipse 60% 60% at 30% 60%, #000, transparent 75%);
+    -webkit-mask-image:
+      radial-gradient(ellipse 60% 60% at 30% 60%, #000, transparent 75%);
+    opacity: 0.4;
+  }
+
+  /* Floating ambient texture wrapper for parallax drift via GSAP */
+  .tex-drift {
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tex-drift { transform: none !important; }
+  }
+
   /* Double-bezel surface (outer shell + inner core)
    * Outer is content-sized by default. When the parent flex row uses
    * `align-items: stretch` to enforce uniform card height (matching the

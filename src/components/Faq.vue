@@ -96,9 +96,12 @@ onUnmounted(() => ctx?.revert())
 </script>
 
 <template>
-  <section ref="root" id="faq" class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36" style="background-color: color-mix(in oklab, var(--color-paper-dim) 50%, var(--color-paper));">
-    <span class="section-marker">06 / FAQ</span>
-    <div class="mx-auto max-w-[1320px]">
+  <section ref="root" id="faq" class="relative overflow-hidden px-5 py-16 sm:px-6 sm:py-24 md:py-36" style="background-color: color-mix(in oklab, var(--color-paper-dim) 50%, var(--color-paper));">
+    <span class="section-marker">07 / FAQ</span>
+    <!-- Texture: dot grid + halftone (editorial Q&A feel) -->
+    <div data-tex-drift class="dot-grid tex-drift hidden sm:block" aria-hidden="true"></div>
+    <div data-tex-drift class="halftone tex-drift hidden md:block" style="opacity: 0.25;" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-[1320px]">
       <div class="mb-10 grid gap-5 sm:gap-8 md:mb-14 md:grid-cols-12 md:items-end">
         <div class="md:col-span-7">
           <span class="pill mb-4 inline-flex md:mb-6">FAQ</span>

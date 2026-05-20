@@ -51,7 +51,7 @@ onUnmounted(() => ctx?.revert())
   <section
     ref="root"
     id="instruments"
-    class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36 section-alt"
+    class="relative px-5 py-16 sm:px-6 sm:py-24 md:py-36 section-alt overflow-hidden"
   >
     <span class="section-marker">02 / Instruments</span>
     <!-- Subtle texture only at the section seam -->
@@ -65,6 +65,10 @@ onUnmounted(() => ctx?.revert())
         );
       "
     ></div>
+
+    <!-- Texture: blueprint grid + plus marks (analytical/data feel) -->
+    <div data-tex-drift class="blueprint-grid tex-drift hidden sm:block" aria-hidden="true"></div>
+    <div data-tex-drift class="plus-marks tex-drift hidden md:block" aria-hidden="true"></div>
 
     <div class="mx-auto max-w-[1320px]">
       <div class="mb-10 flex flex-col items-start justify-between gap-5 sm:gap-6 md:mb-14 md:flex-row md:items-end">

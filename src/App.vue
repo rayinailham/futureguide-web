@@ -94,6 +94,33 @@ onMounted(() => {
     { threshold: 0.15 },
   )
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+
+  // Subtle parallax drift for ambient textures (respects reduced-motion)
+  const mm = gsap.matchMedia()
+  mm.add(
+    {
+      isDesktop: '(min-width: 768px)',
+      reduceMotion: '(prefers-reduced-motion: reduce)',
+    },
+    (ctx) => {
+      const conds = ctx?.conditions ?? {}
+      if (!conds.isDesktop || conds.reduceMotion) return
+      gsap.utils.toArray<HTMLElement>('[data-tex-drift]').forEach((el, i) => {
+        const dir = i % 2 === 0 ? 1 : -1
+        gsap.to(el, {
+          yPercent: 8 * dir,
+          xPercent: 3 * (i % 3 === 0 ? 1 : -1),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el.closest('section') ?? el,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        })
+      })
+    },
+  )
 })
 
 onUnmounted(() => {
