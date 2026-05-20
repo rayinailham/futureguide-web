@@ -1,7 +1,20 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
+import { getLenis } from '../composables/useLenis'
 import StackedRadarCards from './StackedRadarCards.vue'
+
+function scrollTo(e: MouseEvent, href: string) {
+  e.preventDefault()
+  const el = document.querySelector(href)
+  if (!el) return
+  const lenis = getLenis()
+  if (lenis) {
+    lenis.scrollTo(el as HTMLElement, { offset: -48 })
+  } else {
+    ;(el as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
 
 const root = ref<HTMLElement | null>(null)
 let ctx: gsap.Context | null = null
@@ -240,7 +253,7 @@ const stats = [
                 </svg>
               </span>
             </a>
-            <a data-cta href="#instruments" class="btn-ghost">
+            <a data-cta href="#instruments" class="btn-ghost" @click="scrollTo($event, '#instruments')">
               <span>Lihat instrumennya</span>
             </a>
           </div>
