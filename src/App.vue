@@ -21,9 +21,22 @@ useLenis()
 
 const showIntro = ref(true)
 
+const INTRO_TTL_MS = 3 * 24 * 60 * 60 * 1000 // 3 days
+
+function isIntroStillValid(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    const ts = Number(localStorage.getItem('fg-intro-seen-at'))
+    if (!ts || Number.isNaN(ts)) return false
+    return Date.now() - ts < INTRO_TTL_MS
+  } catch {
+    return false
+  }
+}
+
 if (typeof window !== 'undefined') {
-  // Skip intro on internal hash navigation or if already shown this session
-  const seen = sessionStorage.getItem('fg-intro-seen') === '1'
+  // Skip intro on internal hash navigation or if seen within last 3 days
+  const seen = isIntroStillValid()
   const hasHash = window.location.hash && window.location.hash !== '#top'
   if (seen || hasHash) showIntro.value = false
   else {
@@ -34,7 +47,11 @@ if (typeof window !== 'undefined') {
 
 function onIntroFinished() {
   showIntro.value = false
-  sessionStorage.setItem('fg-intro-seen', '1')
+  try {
+    localStorage.setItem('fg-intro-seen-at', String(Date.now()))
+  } catch {
+    /* storage may be disabled — fall through */
+  }
   // Resume scroll engine and trigger any waiting reveals
   const lenis = getLenis()
   lenis?.start()

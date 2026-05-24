@@ -22,9 +22,15 @@ let cleanupMouse: (() => void) | null = null
 
 function shouldDeferForIntro(): boolean {
   if (typeof window === 'undefined') return false
-  const seen = sessionStorage.getItem('fg-intro-seen') === '1'
+  try {
+    const ts = Number(localStorage.getItem('fg-intro-seen-at'))
+    const valid = ts && !Number.isNaN(ts) && Date.now() - ts < 3 * 24 * 60 * 60 * 1000
+    if (valid) return false
+  } catch {
+    /* fall through */
+  }
   const hasHash = window.location.hash && window.location.hash !== '#top'
-  return !seen && !hasHash
+  return !hasHash
 }
 
 onMounted(() => {
